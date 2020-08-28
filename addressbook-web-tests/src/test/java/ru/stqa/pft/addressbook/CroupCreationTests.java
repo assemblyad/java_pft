@@ -21,7 +21,7 @@ public class CroupCreationTests {
   }
 
   @Test
-  public void testCroupCreationTests() throws Exception {
+  public void CroupCreationTests() throws Exception {
     wd.get("http://localhost/addressbook/");
     wd.findElement(By.name("user")).clear();
     wd.findElement(By.name("user")).sendKeys("admin");
