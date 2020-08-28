@@ -9,7 +9,7 @@ import org.openqa.selenium.support.ui.Select;
 public class ContactAddressBookCreationTests {
   private WebDriver wb;
 
-  @BeforeClass(alwaysRun = true)
+  @BeforeMethod(alwaysRun = true)
   public void setUp() throws Exception {
     wb = new FirefoxDriver();
     wb.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
@@ -101,7 +101,7 @@ public class ContactAddressBookCreationTests {
     wb.findElement(By.xpath("//input[@value='Login']")).click();
   }
 
-  @AfterClass(alwaysRun = true)
+  @AfterMethod(alwaysRun = true)
   public void tearDown() throws Exception {
     wb.quit();
   }
