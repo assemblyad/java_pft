@@ -6,12 +6,12 @@ public class ContactAddressBookDeletionTests extends TestBase {
 
   @Test
   public void testContactAddressBookDeletion() throws Exception {
-    gotoHome();
-    selectContactAddressRecord();
-    deleteSelectedContactAddressRecords();
-    acceptAlterMessage();
-    gotoHome();
-    logout();
+    app.gotoHome();
+    app.selectContactAddressRecord();
+    app.deleteSelectedContactAddressRecords();
+    app.acceptAlterMessage();
+    app.gotoHome();
+    app.logout();
   }
 
 }
