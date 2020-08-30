@@ -1,10 +1,7 @@
 package ru.stqa.pft.addressbook.appmanager;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.NoAlertPresentException;
-import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.ui.Select;
 
 public class ContactAddressBookRecordHelper extends HelperBase{
   public ContactAddressBookRecordHelper(WebDriver wd) {
@@ -41,7 +38,7 @@ public class ContactAddressBookRecordHelper extends HelperBase{
       select(By.name("aday"), addressBookRecord.getAday());
       select(By.name("amonth"), addressBookRecord.getAmonth());
       type(By.name("ayear"),addressBookRecord.getAyear());
-      select(By.name("new_group"), addressBookRecord.getGroupName());
+      //select(By.name("new_group"), addressBookRecord.getGroupName());
       type(By.name("address2"),addressBookRecord.getAddress2());
       type(By.name("phone2"),addressBookRecord.getHome1());
       type(By.name("notes"),addressBookRecord.getNotes());
@@ -80,7 +77,15 @@ public class ContactAddressBookRecordHelper extends HelperBase{
   }
 
   public void selectContactAddressRecord() {
-    click(By.id("18"));
+    click(By.id("20"));
     boolean acceptNextAlert = true;
+  }
+
+  public void initContactAddressRecordsModification() {
+    click(By.xpath("//img[@alt='Edit']"));
+  }
+
+  public void submitContactAddressRecordsModification() {
+    click(By.name("update"));
   }
 }
