@@ -2,7 +2,10 @@ package ru.stqa.pft.addressbook.appmanager;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.ie.InternetExplorerDriver;
+import org.openqa.selenium.remote.BrowserType;
 
 import java.util.concurrent.TimeUnit;
 
@@ -12,9 +15,23 @@ public class ApplicationManager {
   private SessionHelper sessionHelper;
   private NavigationHelper navigationHelper;
   private GroupHelper groupHelper;
+  private String browser;
+
+  public ApplicationManager(String browser) {
+    this.browser = browser;
+  }
 
   public void init() {
-    wd = new FirefoxDriver();
+
+    if (browser.equals(BrowserType.FIREFOX)) {
+      wd = new FirefoxDriver();
+    } else  if(browser.equals(BrowserType.CHROME)) {
+      wd = new ChromeDriver();
+    } else if(browser.equals(BrowserType.IE)) {
+      wd = new InternetExplorerDriver();
+    }
+
+
     /*wd = new ChromeDriver(); */
 //      driver = new ChromeDriver();
     wd.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
@@ -25,7 +42,6 @@ public class ApplicationManager {
     sessionHelper = new SessionHelper(wd);
     sessionHelper.login("admin", "secret");
   }
-
 
   public void returnToGroupPage() {
     wd.findElement(By.linkText("Logout")).click();
