@@ -19,22 +19,24 @@ public class HelperBase {
 
   protected void type(By locator, String text) {
     click(locator);
-    if (text!=null) {
+/*    if (text!=null) {
       String existingText = wd.findElement(locator).getAttribute("value");
       if (!text.equals(existingText)){
-        wd.findElement(locator).clear();
-        wd.findElement(locator).sendKeys(text);
-      }
-    }
+
+ */
+    wd.findElement(locator).clear();
+    wd.findElement(locator).sendKeys(text);
+//      }
+//    }
   }
 
   protected void select(By locator, String text) {
     new Select(wd.findElement(locator)).selectByVisibleText(text);
   }
 
-  public boolean isElementPresent(By by) {
+  public boolean isElementPresent(By locator) {
     try {
-      wd.findElement(by);
+      wd.findElement(locator);
       return true;
     } catch (NoSuchElementException e) {
       return false;
