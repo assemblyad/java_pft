@@ -1,6 +1,6 @@
-package ru.stqa.pft.addressbook.appmanager;
+package ru.stqa.pft.addressbook.model;
 
-public class ContactAddressBookRecord {
+public class ContactAddressBookRecordData {
   private final String firstName;
   private final String middleName;
   private final String lastName;
@@ -27,7 +27,7 @@ public class ContactAddressBookRecord {
   private final String amonth;
   private final String ayear;
 
-  public ContactAddressBookRecord(String firstName, String middleName, String lastName, String nickname, String title, String company, String address, String home, String mobile, String work, String fax, String email, String email2, String email3, String homepage, String groupName, String address2, String home1, String notes, String bday, String bmonth, String byear, String aday, String amonth, String ayear) {
+  public ContactAddressBookRecordData(String firstName, String middleName, String lastName, String nickname, String title, String company, String address, String home, String mobile, String work, String fax, String email, String email2, String email3, String homepage, String groupName, String address2, String home1, String notes, String bday, String bmonth, String byear, String aday, String amonth, String ayear) {
     this.firstName = firstName;
     this.middleName = middleName;
     this.lastName = lastName;

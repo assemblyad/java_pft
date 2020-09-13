@@ -8,6 +8,7 @@ public class GroupModificationTest extends TestBase  {
   @Test
   public void testGroupModification () {
     app.getNavigationHelper().gotoGroupPage();
+    //please check here validation for Group presence
     if(!app.getGroupHelper().isThereAGroup()){
       app.getGroupHelper().createGroup(new GroupData("Group name", "Header", "Footer"));
     }

@@ -1,7 +1,7 @@
 package ru.stqa.pft.addressbook.tests;
 
 import org.testng.annotations.Test;
-import ru.stqa.pft.addressbook.appmanager.ContactAddressBookRecord;
+import ru.stqa.pft.addressbook.model.ContactAddressBookRecordData;
 
 public class ContactAddressBookCreationTests extends TestBase {
 
@@ -9,7 +9,7 @@ public class ContactAddressBookCreationTests extends TestBase {
   public void testContactAddressBookCreation() throws Exception {
     app.getContactAddressBookRecordHelper().gotoHome();
     app.getContactAddressBookRecordHelper().initContactAddressRecord();
-    app.getContactAddressBookRecordHelper().fillContactAddressBookRecord(new ContactAddressBookRecord("First name", "Middle_name", "Last_name", "Nickname", "Title", "Company", "Address", "Home", "Mobile", "Work", "Fax", "E-mail", "E-mail2", "E-mail3", "Homepage", "Group name", "Greenwood Village", "Home", "Notes", "5", "April", "1975", "5", "April", "1980"));
+    app.getContactAddressBookRecordHelper().fillContactAddressBookRecord(new ContactAddressBookRecordData("First name", "Middle_name", "Last_name", "Nickname", "Title", "Company", "Address", "Home", "Mobile", "Work", "Fax", "E-mail", "E-mail2", "E-mail3", "Homepage", "Group name", "Greenwood Village", "Home", "Notes", "5", "April", "1975", "5", "April", "1980"),true);
     app.getContactAddressBookRecordHelper().submitContactAddressBookRecord();
     app.getContactAddressBookRecordHelper().returnedHomePage();
 //    app.logout();

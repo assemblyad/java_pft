@@ -2,6 +2,9 @@ package ru.stqa.pft.addressbook.appmanager;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.Select;
+import org.testng.Assert;
+import ru.stqa.pft.addressbook.model.ContactAddressBookRecordData;
 
 public class ContactAddressBookRecordHelper extends HelperBase{
   public ContactAddressBookRecordHelper(WebDriver wd) {
@@ -16,7 +19,7 @@ public class ContactAddressBookRecordHelper extends HelperBase{
       click(By.xpath("(//input[@name='submit'])[2]"));
     }
 
-  public void fillContactAddressBookRecord(ContactAddressBookRecord addressBookRecord) {
+  public void fillContactAddressBookRecord(ContactAddressBookRecordData addressBookRecord, boolean creation) {
       type(By.name("firstname"),addressBookRecord.getFirstName());
       type(By.name("middlename"),addressBookRecord.getMiddleName());
       type(By.name("lastname"),addressBookRecord.getLastName());
@@ -38,7 +41,12 @@ public class ContactAddressBookRecordHelper extends HelperBase{
       select(By.name("aday"), addressBookRecord.getAday());
       select(By.name("amonth"), addressBookRecord.getAmonth());
       type(By.name("ayear"),addressBookRecord.getAyear());
-      //select(By.name("new_group"), addressBookRecord.getGroupName());
+      if(creation){
+        new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(addressBookRecord.getGroupName());
+      } else {
+        Assert.assertFalse(isElementPresent(By.name("new_group")));
+      }
+       //select(By.name("new_group"), addressBookRecord.getGroupName());
       type(By.name("address2"),addressBookRecord.getAddress2());
       type(By.name("phone2"),addressBookRecord.getHome1());
       type(By.name("notes"),addressBookRecord.getNotes());
@@ -77,7 +85,7 @@ public class ContactAddressBookRecordHelper extends HelperBase{
   }
 
   public void selectContactAddressRecord() {
-    click(By.id("20"));
+    click(By.id("37"));
     boolean acceptNextAlert = true;
   }
 
@@ -87,5 +95,16 @@ public class ContactAddressBookRecordHelper extends HelperBase{
 
   public void submitContactAddressRecordsModification() {
     click(By.name("update"));
+  }
+
+  public void ContactAddressBookRecord(ContactAddressBookRecordData contactAddressBookRecordData, boolean b) {
+    initContactAddressRecord();
+    fillContactAddressBookRecord(new ContactAddressBookRecordData("First name", "Middle_name", "Last_name", "Nickname", "Title", "Company", "Address", "Home", "Mobile", "Work", "Fax", "E-mail", "E-mail2", "E-mail3", "Homepage", "Group name", "Greenwood Village", "Home", "Notes", "5", "April", "1975", "5", "April", "1980"),true);
+    submitContactAddressBookRecord();
+    returnedHomePage();
+  }
+
+  public boolean isThereAContactAddressBookRecord() {
+    return isElementPresent(By.name("selected[]"));
   }
 }
