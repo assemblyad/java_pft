@@ -24,7 +24,11 @@ public class ContactAddressBookDeletionTests extends TestBase {
     app.getContactAddressBookRecordHelper().gotoHome();
 //    int after = app.getContactAddressBookRecordHelper().getContactAddressBookRecordCount();
     List<ContactAddressBookRecordData>  after = app.getContactAddressBookRecordHelper().getContactAddressBookRecordList();
+
     Assert.assertEquals(after.size(),before.size()-1);
+    before.remove(before.size()-1);
+
+    Assert.assertEquals(after,before);
   }
 
 }
