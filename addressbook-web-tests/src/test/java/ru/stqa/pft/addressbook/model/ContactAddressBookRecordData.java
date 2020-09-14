@@ -3,6 +3,27 @@ package ru.stqa.pft.addressbook.model;
 import java.util.Objects;
 
 public class ContactAddressBookRecordData {
+  private String id;
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) return true;
+    if (o == null || getClass() != o.getClass()) return false;
+    ContactAddressBookRecordData that = (ContactAddressBookRecordData) o;
+    return Objects.equals(id, that.id) &&
+            Objects.equals(firstName, that.firstName) &&
+            Objects.equals(lastName, that.lastName);
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(id, firstName, lastName);
+  }
+
+  public String getId() {
+    return id;
+  }
+
   private final String firstName;
   private final String middleName;
   private final String lastName;
@@ -56,6 +77,36 @@ public class ContactAddressBookRecordData {
     this.amonth = amonth;
     this.ayear = ayear;
   }
+
+  public ContactAddressBookRecordData(String id,String firstName, String middleName, String lastName, String nickname, String title, String company, String address, String home, String mobile, String work, String fax, String email, String email2, String email3, String homepage, String groupName, String address2, String home1, String notes, String bday, String bmonth, String byear, String aday, String amonth, String ayear) {
+    this.id=id;
+    this.firstName = firstName;
+    this.middleName = middleName;
+    this.lastName = lastName;
+    this.nickname = nickname;
+    this.title = title;
+    this.company = company;
+    this.address = address;
+    this.home = home;
+    this.mobile = mobile;
+    this.work = work;
+    this.fax = fax;
+    this.email = email;
+    this.email2 = email2;
+    this.email3 = email3;
+    this.homepage = homepage;
+    this.groupName = groupName;
+    this.address2 = address2;
+    this.home1 = home1;
+    this.notes = notes;
+    this.bday = bday;
+    this.bmonth = bmonth;
+    this.byear = byear;
+    this.aday = aday;
+    this.amonth = amonth;
+    this.ayear = ayear;
+  }
+
 
   public String getFirstName() {
     return firstName;
@@ -166,17 +217,4 @@ public class ContactAddressBookRecordData {
             '}';
   }
 
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) return true;
-    if (o == null || getClass() != o.getClass()) return false;
-    ContactAddressBookRecordData that = (ContactAddressBookRecordData) o;
-    return Objects.equals(firstName, that.firstName) &&
-            Objects.equals(lastName, that.lastName);
-  }
-
-  @Override
-  public int hashCode() {
-    return Objects.hash(firstName, lastName);
-  }
 }

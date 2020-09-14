@@ -125,7 +125,8 @@ public class ContactAddressBookRecordHelper extends HelperBase{
       String[] names = element.getText().split("");
       String lastName =names[0];
       String firstName = names[1];
-      ContactAddressBookRecordData contactAddressBookRecordData = new ContactAddressBookRecordData(lastName,firstName,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null);
+      String id = element.findElement(By.tagName("input")).getAttribute("value");
+      ContactAddressBookRecordData contactAddressBookRecordData = new ContactAddressBookRecordData(id,lastName,firstName,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null);
       contactAddressBookRecord.add(contactAddressBookRecordData);
     }
 
