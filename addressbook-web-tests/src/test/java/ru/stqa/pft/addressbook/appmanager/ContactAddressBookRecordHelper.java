@@ -2,9 +2,14 @@ package ru.stqa.pft.addressbook.appmanager;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import ru.stqa.pft.addressbook.model.ContactAddressBookRecordData;
+
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ContactAddressBookRecordHelper extends HelperBase{
   public ContactAddressBookRecordHelper(WebDriver wd) {
@@ -84,8 +89,9 @@ public class ContactAddressBookRecordHelper extends HelperBase{
     //assertTrue(closeAlertAndGetItsText().matches("^Delete 1 addresses[\\s\\S]$"));
   }
 
-  public void selectContactAddressRecord() {
-    click(By.id("37"));
+  public void selectContactAddressRecord(int index) {
+    wd.findElements(By.name("selected[]")).get(index).click();
+//    click(By.id("37"));
     boolean acceptNextAlert = true;
   }
 
@@ -106,5 +112,23 @@ public class ContactAddressBookRecordHelper extends HelperBase{
 
   public boolean isThereAContactAddressBookRecord() {
     return isElementPresent(By.name("selected[]"));
+  }
+
+  public int getContactAddressBookRecordCount() {
+    return  wd.findElements(By.name("selected[]")).size();
+  }
+
+  public List<ContactAddressBookRecordData> getContactAddressBookRecordList() {
+    List <ContactAddressBookRecordData> contactAddressBookRecord = new ArrayList<ContactAddressBookRecordData>();
+    List <WebElement> elements = wd.findElements(By.cssSelector("tr[name='entry']"));
+    for (WebElement element: elements) {
+      String[] names = element.getText().split("");
+      String lastName =names[0];
+      String firstName = names[1];
+      ContactAddressBookRecordData contactAddressBookRecordData = new ContactAddressBookRecordData(lastName,firstName,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null);
+      contactAddressBookRecord.add(contactAddressBookRecordData);
+    }
+
+    return contactAddressBookRecord;
   }
 }

@@ -44,7 +44,7 @@ public class ApplicationManager {
   }
 
   public void returnToGroupPage() {
-    wd.findElement(By.linkText("Logout")).click();
+    wd.findElement(By.linkText("group page")).click();
   }
 
   public void stop() {
