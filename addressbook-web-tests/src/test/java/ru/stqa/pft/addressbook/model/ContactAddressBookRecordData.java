@@ -3,27 +3,7 @@ package ru.stqa.pft.addressbook.model;
 import java.util.Objects;
 
 public class ContactAddressBookRecordData {
-  private String id;
-
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) return true;
-    if (o == null || getClass() != o.getClass()) return false;
-    ContactAddressBookRecordData that = (ContactAddressBookRecordData) o;
-    return Objects.equals(id, that.id) &&
-            Objects.equals(firstName, that.firstName) &&
-            Objects.equals(lastName, that.lastName);
-  }
-
-  @Override
-  public int hashCode() {
-    return Objects.hash(id, firstName, lastName);
-  }
-
-  public String getId() {
-    return id;
-  }
-
+  private int id;
   private final String firstName;
   private final String middleName;
   private final String lastName;
@@ -78,7 +58,7 @@ public class ContactAddressBookRecordData {
     this.ayear = ayear;
   }
 
-  public ContactAddressBookRecordData(String id,String firstName, String middleName, String lastName, String nickname, String title, String company, String address, String home, String mobile, String work, String fax, String email, String email2, String email3, String homepage, String groupName, String address2, String home1, String notes, String bday, String bmonth, String byear, String aday, String amonth, String ayear) {
+  public ContactAddressBookRecordData(int id, String firstName, String middleName, String lastName, String nickname, String title, String company, String address, String home, String mobile, String work, String fax, String email, String email2, String email3, String homepage, String groupName, String address2, String home1, String notes, String bday, String bmonth, String byear, String aday, String amonth, String ayear) {
     this.id=id;
     this.firstName = firstName;
     this.middleName = middleName;
@@ -208,6 +188,9 @@ public class ContactAddressBookRecordData {
     return ayear;
   }
 
+  public void setId(int id) {
+    this.id = id;
+  }
 
   @Override
   public String toString() {
@@ -215,6 +198,25 @@ public class ContactAddressBookRecordData {
             "firstName='" + firstName + '\'' +
             ", lastName='" + lastName + '\'' +
             '}';
+  }
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) return true;
+    if (o == null || getClass() != o.getClass()) return false;
+    ContactAddressBookRecordData that = (ContactAddressBookRecordData) o;
+    return id == that.id &&
+            Objects.equals(firstName, that.firstName) &&
+            Objects.equals(lastName, that.lastName);
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(id, firstName, lastName);
+  }
+
+  public int getId() {
+    return id;
   }
 
 }

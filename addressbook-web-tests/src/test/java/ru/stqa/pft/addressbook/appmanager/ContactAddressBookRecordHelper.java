@@ -122,11 +122,10 @@ public class ContactAddressBookRecordHelper extends HelperBase{
     List <ContactAddressBookRecordData> contactAddressBookRecord = new ArrayList<ContactAddressBookRecordData>();
     List <WebElement> elements = wd.findElements(By.cssSelector("tr[name='entry']"));
     for (WebElement element: elements) {
-      String[] names = element.getText().split("");
-      String lastName =names[0];
-      String firstName = names[1];
-      String id = element.findElement(By.tagName("input")).getAttribute("value");
-      ContactAddressBookRecordData contactAddressBookRecordData = new ContactAddressBookRecordData(id,lastName,firstName,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null);
+      String lastName =element.findElement(By.cssSelector("td[class='center']+td")).getText();
+      String firstName = element.findElement(By.cssSelector("td[class='center']+td+td")).getText();
+      int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
+      ContactAddressBookRecordData contactAddressBookRecordData = new ContactAddressBookRecordData(id,firstName,null,lastName,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null);
       contactAddressBookRecord.add(contactAddressBookRecordData);
     }
 
