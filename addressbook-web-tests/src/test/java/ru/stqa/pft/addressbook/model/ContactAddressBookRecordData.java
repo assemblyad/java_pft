@@ -59,7 +59,7 @@ public class ContactAddressBookRecordData {
   }
 
   public ContactAddressBookRecordData(int id, String firstName, String middleName, String lastName, String nickname, String title, String company, String address, String home, String mobile, String work, String fax, String email, String email2, String email3, String homepage, String groupName, String address2, String home1, String notes, String bday, String bmonth, String byear, String aday, String amonth, String ayear) {
-    this.id=id;
+    this.id=Integer.MAX_VALUE;
     this.firstName = firstName;
     this.middleName = middleName;
     this.lastName = lastName;
@@ -205,14 +205,13 @@ public class ContactAddressBookRecordData {
     if (this == o) return true;
     if (o == null || getClass() != o.getClass()) return false;
     ContactAddressBookRecordData that = (ContactAddressBookRecordData) o;
-    return id == that.id &&
-            Objects.equals(firstName, that.firstName) &&
+    return Objects.equals(firstName, that.firstName) &&
             Objects.equals(lastName, that.lastName);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, firstName, lastName);
+    return Objects.hash(firstName, lastName);
   }
 
   public int getId() {

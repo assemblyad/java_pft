@@ -4,6 +4,7 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.ContactAddressBookRecordData;
 
+import java.util.Comparator;
 import java.util.HashSet;
 import java.util.List;
 
@@ -19,13 +20,22 @@ public class ContactAddressBookModificationTests extends TestBase {
     List<ContactAddressBookRecordData> before = app.getContactAddressBookRecordHelper().getContactAddressBookRecordList();
     app.getContactAddressBookRecordHelper().selectContactAddressRecord(before.size()-1);
     app.getContactAddressBookRecordHelper().initContactAddressRecordsModification();
-
-    app.getContactAddressBookRecordHelper().fillContactAddressBookRecord(new ContactAddressBookRecordData(before.get(before.size()-1).getId(),"First name1", "Middle_name1", "Last_name1", "Nickname", "Title", "Company", "Address", "Home", "Mobile", "Work", "Fax", "E-mail", "E-mail2", "E-mail3", "Homepage", null, "Greenwood Village", "Home", "Notes", "5", "April", "1975", "5", "April", "1980"),false);
+    ContactAddressBookRecordData contactAddressBookRecordData = new ContactAddressBookRecordData(before.get(before.size()-1).getId(),"First name1", "Middle_name1", "Last_name1", "Nickname", "Title", "Company", "Address", "Home", "Mobile", "Work", "Fax", "E-mail", "E-mail2", "E-mail3", "Homepage", null, "Greenwood Village", "Home", "Notes", "5", "April", "1975", "5", "April", "1980");
+    app.getContactAddressBookRecordHelper().fillContactAddressBookRecord(contactAddressBookRecordData,false);
     app.getContactAddressBookRecordHelper().submitContactAddressRecordsModification();
     app.getContactAddressBookRecordHelper().gotoHome();
 //    int after = app.getContactAddressBookRecordHelper().getContactAddressBookRecordCount();
     List<ContactAddressBookRecordData> after = app.getContactAddressBookRecordHelper().getContactAddressBookRecordList();
     Assert.assertEquals(after.size(),before.size());
-    Assert.assertEquals(new HashSet<>(before), new HashSet<>(after));
+
+    before.remove(before.size()-1);
+    before.add(contactAddressBookRecordData);
+
+    Comparator<? super ContactAddressBookRecordData> byId= (Comparator<ContactAddressBookRecordData>) (c1, c2) -> Integer.compare(c1.getId(),c2.getId());
+    before.sort(byId);
+    after.sort(byId);
+
+//    Assert.assertEquals(new HashSet<>(before), new HashSet<>(after));
+    Assert.assertEquals(before,after);
   }
 }
