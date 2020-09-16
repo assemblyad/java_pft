@@ -101,8 +101,6 @@ public class ContactAddressBookRecordHelper extends HelperBase{
 
   public void initContactAddressRecordsModification(int index) {
 
-//    By.cssSelector("tr[name='entry']").findElements(wd).get(index).findElements(By.xpath("//img[@title='Edit']")).get(0).click();
-//      wd.findElements(By.xpath("//table[@id='maintable']//tr["+(index+2)+"]//td[8]//a")).get(0).click();
       wd.findElements(By.xpath("//tr[@name='entry']["+(index+1)+"]//img[@title='Edit']")).get(0).click();
 }
 
@@ -127,15 +125,14 @@ public class ContactAddressBookRecordHelper extends HelperBase{
 
   public List<ContactAddressBookRecordData> getContactAddressBookRecordList() {
     List <ContactAddressBookRecordData> contactAddressBookRecord = new ArrayList<ContactAddressBookRecordData>();
-    List <WebElement> elements = wd.findElements(By.cssSelector("tr[name='entry']"));
-    for (WebElement element: elements) {
-      String lastName =element.findElement(By.cssSelector("td[class='center']+td")).getText();
-      String firstName = element.findElement(By.cssSelector("td[class='center']+td+td")).getText();
-      int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
+    List <WebElement> rows = wd.findElements(By.cssSelector("tr[name='entry']"));
+    for (WebElement row: rows){
+      String lastName = row.findElements(By.tagName("td")).get(1).getText();
+      String firstName = row.findElements(By.tagName("td")).get(2).getText();
+      int id = Integer.parseInt(row.findElement(By.tagName("input")).getAttribute("value"));
       ContactAddressBookRecordData contactAddressBookRecordData = new ContactAddressBookRecordData(id,firstName,null,lastName,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null);
       contactAddressBookRecord.add(contactAddressBookRecordData);
     }
-
     return contactAddressBookRecord;
   }
 }

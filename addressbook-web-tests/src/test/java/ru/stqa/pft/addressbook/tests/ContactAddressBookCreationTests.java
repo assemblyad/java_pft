@@ -29,6 +29,7 @@ public class ContactAddressBookCreationTests extends TestBase {
         }
       }
 */
+
     contactAddressBookRecordData.setId(after.stream().max((o1, o2) -> Integer.compare(o1.getId(), o2.getId())).get().getId());
     before.add(contactAddressBookRecordData);
 
