@@ -19,7 +19,8 @@ public class ContactAddressBookModificationTests extends TestBase {
 //    int before = app.getContactAddressBookRecordHelper().getContactAddressBookRecordCount();
     List<ContactAddressBookRecordData> before = app.getContactAddressBookRecordHelper().getContactAddressBookRecordList();
     app.getContactAddressBookRecordHelper().selectContactAddressRecord(before.size()-1);
-    app.getContactAddressBookRecordHelper().initContactAddressRecordsModification();
+//    app.getContactAddressBookRecordHelper().initContactAddressRecordsModification();
+    app.getContactAddressBookRecordHelper().initContactAddressRecordsModification(before.size()-1);
     ContactAddressBookRecordData contactAddressBookRecordData = new ContactAddressBookRecordData(before.get(before.size()-1).getId(),"First name8", "Middle_name1", "Last_name8", "Nickname", "Title", "Company", "Address", "Home", "Mobile", "Work", "Fax", "E-mail", "E-mail2", "E-mail3", "Homepage", null, "Greenwood Village", "Home", "Notes", "5", "April", "1975", "5", "April", "1980");
     app.getContactAddressBookRecordHelper().fillContactAddressBookRecord(contactAddressBookRecordData,false);
     app.getContactAddressBookRecordHelper().submitContactAddressRecordsModification();

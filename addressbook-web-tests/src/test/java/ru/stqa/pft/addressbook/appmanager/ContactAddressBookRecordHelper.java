@@ -99,6 +99,13 @@ public class ContactAddressBookRecordHelper extends HelperBase{
     click(By.xpath("//img[@alt='Edit']"));
   }
 
+  public void initContactAddressRecordsModification(int index) {
+
+//    By.cssSelector("tr[name='entry']").findElements(wd).get(index).findElements(By.xpath("//img[@title='Edit']")).get(0).click();
+//      wd.findElements(By.xpath("//table[@id='maintable']//tr["+(index+2)+"]//td[8]//a")).get(0).click();
+      wd.findElements(By.xpath("//tr[@name='entry']["+(index+1)+"]//img[@title='Edit']")).get(0).click();
+}
+
   public void submitContactAddressRecordsModification() {
     click(By.name("update"));
   }
