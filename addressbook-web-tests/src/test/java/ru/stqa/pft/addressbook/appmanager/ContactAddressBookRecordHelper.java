@@ -7,7 +7,6 @@ import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import ru.stqa.pft.addressbook.model.ContactAddressBookRecordData;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -83,12 +82,12 @@ public class ContactAddressBookRecordHelper extends HelperBase{
   }
 */
 
-  public void deleteSelectedContactAddressRecords() {
+  public void deleteContact() {
     click(By.xpath("//input[@value='Delete']"));
     //assertTrue(closeAlertAndGetItsText().matches("^Delete 1 addresses[\\s\\S]$"));
   }
 
-  public void selectContactAddressRecord(int index) {
+  public void selectContact(int index) {
     wd.findElements(By.name("selected[]")).get(index).click();
 //    click(By.id("37"));
     boolean acceptNextAlert = true;
@@ -107,15 +106,15 @@ public class ContactAddressBookRecordHelper extends HelperBase{
     click(By.name("update"));
   }
 
-  public void createContactAddressBookRecord(ContactAddressBookRecordData contactAddressBookRecordData, boolean b) {
+  public void create(ContactAddressBookRecordData contactAddressBookRecordData, boolean b) {
     initContactAddressRecord();
 //    fillContactAddressBookRecord(new ContactAddressBookRecordData("First name", "Middle_name", "Last_name", "Nickname", "Title", "Company", "Address", "Home", "Mobile", "Work", "Fax", "E-mail", "E-mail2", "E-mail3", "Homepage", "Group name", "Greenwood Village", "Home", "Notes", "5", "April", "1975", "5", "April", "1980"),true);
     fillContactAddressBookRecord(contactAddressBookRecordData,true);
     submitContactAddressBookRecord();
     returnedHomePage();
   }
-  public void modifyContactAddressBookRecordData(int index, ContactAddressBookRecordData contactAddressBookRecordData) {
-    selectContactAddressRecord(index);
+  public void modify(int index, ContactAddressBookRecordData contactAddressBookRecordData) {
+    selectContact(index);
 //    app.getContactAddressBookRecordHelper().initContactAddressRecordsModification();
     initContactAddressRecordsModification(index);
     fillContactAddressBookRecord(contactAddressBookRecordData,false);
@@ -130,7 +129,7 @@ public class ContactAddressBookRecordHelper extends HelperBase{
     return  wd.findElements(By.name("selected[]")).size();
   }
 
-  public List<ContactAddressBookRecordData> getContactAddressBookRecordList() {
+  public List<ContactAddressBookRecordData> list() {
     List <ContactAddressBookRecordData> contactAddressBookRecord = new ArrayList<ContactAddressBookRecordData>();
     List <WebElement> rows = wd.findElements(By.cssSelector("tr[name='entry']"));
     for (WebElement row: rows){

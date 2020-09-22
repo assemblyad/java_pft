@@ -76,7 +76,7 @@ public class ApplicationManager {
   }
 */
 
-  public ContactAddressBookRecordHelper getContactAddressBookRecordHelper() {
+  public ContactAddressBookRecordHelper contact() {
     return contactAddressBookRecordHelper;
   }
 }
