@@ -43,20 +43,18 @@ public class ApplicationManager {
     sessionHelper.login("admin", "secret");
   }
 
-  public void returnToGroupPage() {
-    wd.findElement(By.linkText("group page")).click();
-  }
+
 
   public void stop() {
     sessionHelper.logout();
     wd.quit();
   }
 
-  public GroupHelper getGroupHelper() {
+  public GroupHelper group() {
     return groupHelper;
   }
 
-  public NavigationHelper getNavigationHelper() {
+  public NavigationHelper goTo() {
     return navigationHelper;
   }
 
