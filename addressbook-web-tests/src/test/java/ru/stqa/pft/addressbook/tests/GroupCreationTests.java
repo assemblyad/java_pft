@@ -10,7 +10,7 @@ import java.util.List;
 
 public class GroupCreationTests extends TestBase {
 
-  @Test
+  @Test(enabled = true)
   public void testGroupCreation() throws Exception {
     app.getNavigationHelper().gotoGroupPage();
     List <GroupData> before = app.getGroupHelper().getGroupList();
@@ -25,7 +25,6 @@ public class GroupCreationTests extends TestBase {
             max=(g.getId());
           }
     }
-
 */
     group.setId(after.stream().max((o1, o2) -> Integer.compare(o1.getId(),o2.getId())).get().getId());
     before.add(group);

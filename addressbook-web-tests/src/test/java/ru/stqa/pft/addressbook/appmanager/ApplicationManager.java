@@ -34,7 +34,7 @@ public class ApplicationManager {
 
     /*wd = new ChromeDriver(); */
 //      driver = new ChromeDriver();
-    wd.manage().timeouts().implicitlyWait(1, TimeUnit.SECONDS);
+    wd.manage().timeouts().implicitlyWait(0, TimeUnit.SECONDS);
     wd.get("http://localhost/addressbook/");
     contactAddressBookRecordHelper = new ContactAddressBookRecordHelper(wd);
     groupHelper = new GroupHelper(wd);

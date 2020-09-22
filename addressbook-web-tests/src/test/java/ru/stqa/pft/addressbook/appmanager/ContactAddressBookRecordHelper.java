@@ -51,7 +51,6 @@ public class ContactAddressBookRecordHelper extends HelperBase{
       } else {
         Assert.assertFalse(isElementPresent(By.name("new_group")));
       }
-       //select(By.name("new_group"), addressBookRecord.getGroupName());
       type(By.name("address2"),addressBookRecord.getAddress2());
       type(By.name("phone2"),addressBookRecord.getHome1());
       type(By.name("notes"),addressBookRecord.getNotes());
@@ -108,13 +107,21 @@ public class ContactAddressBookRecordHelper extends HelperBase{
     click(By.name("update"));
   }
 
-  public void ContactAddressBookRecord(ContactAddressBookRecordData contactAddressBookRecordData, boolean b) {
+  public void createContactAddressBookRecord(ContactAddressBookRecordData contactAddressBookRecordData, boolean b) {
     initContactAddressRecord();
-    fillContactAddressBookRecord(new ContactAddressBookRecordData("First name", "Middle_name", "Last_name", "Nickname", "Title", "Company", "Address", "Home", "Mobile", "Work", "Fax", "E-mail", "E-mail2", "E-mail3", "Homepage", "Group name", "Greenwood Village", "Home", "Notes", "5", "April", "1975", "5", "April", "1980"),true);
+//    fillContactAddressBookRecord(new ContactAddressBookRecordData("First name", "Middle_name", "Last_name", "Nickname", "Title", "Company", "Address", "Home", "Mobile", "Work", "Fax", "E-mail", "E-mail2", "E-mail3", "Homepage", "Group name", "Greenwood Village", "Home", "Notes", "5", "April", "1975", "5", "April", "1980"),true);
+    fillContactAddressBookRecord(contactAddressBookRecordData,true);
     submitContactAddressBookRecord();
     returnedHomePage();
   }
-
+  public void modifyContactAddressBookRecordData(int index, ContactAddressBookRecordData contactAddressBookRecordData) {
+    selectContactAddressRecord(index);
+//    app.getContactAddressBookRecordHelper().initContactAddressRecordsModification();
+    initContactAddressRecordsModification(index);
+    fillContactAddressBookRecord(contactAddressBookRecordData,false);
+    submitContactAddressRecordsModification();
+    gotoHome();
+  }
   public boolean isThereAContactAddressBookRecord() {
     return isElementPresent(By.name("selected[]"));
   }
