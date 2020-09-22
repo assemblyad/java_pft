@@ -16,18 +16,18 @@ public class ContactAddressBookModificationTests extends TestBase {
     app.contact().gotoHome();
     //please check here validation for contact address book presence.
     if(app.contact().list().size()==0){
-      app.contact().create(new ContactAddressBookRecordData("First name", "Middle_name", "Last_name", "Nickname", "Title", "Company", "Address", "Home", "Mobile", "Work", "Fax", "E-mail", "E-mail2", "E-mail3", "Homepage", "Group name", "Greenwood Village", "Home", "Notes", "5", "April", "1975", "5", "April", "1980"),true);
+      app.contact().create(new ContactAddressBookRecordData().withFirstName("First name").withMiddleName("Middle_name").withLastName("Last_name").withNickname("Nickname").withTitle("Title").withCompany("Company").withAddress("Address").withHome("Home").withMobile("Mobile").withWork("Work").withFax("Fax").withEmail("E-mail").withEmail2("E-mail2").withEmail3("E-mail3").withHomepage("Homepage").withGroupName("Group name").withAddress2("Greenwood Village").withHome1("Home").withNotes("Notes").withBday("5").withBmonth("April").withByear("1975").withAday("5").withAmonth("April").withAyear("1980"),true);
     }
   }
 
 
-  @Test(enabled = false)
+  @Test(enabled = true)
   public void testContactAddressBookModification() {
 
 //    int before = app.getContactAddressBookRecordHelper().getContactAddressBookRecordCount();
     List<ContactAddressBookRecordData> before = app.contact().list();
     int index =before.size()-1;
-    ContactAddressBookRecordData contactAddressBookRecordData = new ContactAddressBookRecordData(before.get(index).getId(),"First name8", "Middle_name1", "Last_name8", "Nickname", "Title", "Company", "Address", "Home", "Mobile", "Work", "Fax", "E-mail", "E-mail2", "E-mail3", "Homepage", null, "Greenwood Village", "Home", "Notes", "5", "April", "1975", "5", "April", "1980");
+    ContactAddressBookRecordData contactAddressBookRecordData = new ContactAddressBookRecordData().withId(before.get(index).getId()).withFirstName("First name8").withMiddleName("Middle_name").withLastName("Last_name8").withNickname("Nickname").withTitle("Title").withCompany("Company").withAddress("Address").withHome("Home").withMobile("Mobile").withWork("Work").withFax("Fax").withEmail("E-mail").withEmail2("E-mail2").withEmail3("E-mail3").withHomepage("Homepage").withGroupName("Group name").withAddress2("Greenwood Village").withHome1("Home").withNotes("Notes").withBday("5").withBmonth("April").withByear("1975").withAday("5").withAmonth("April").withAyear("1980");
     app.contact().modify(index, contactAddressBookRecordData);
 //    int after = app.getContactAddressBookRecordHelper().getContactAddressBookRecordCount();
     List<ContactAddressBookRecordData> after = app.contact().list();

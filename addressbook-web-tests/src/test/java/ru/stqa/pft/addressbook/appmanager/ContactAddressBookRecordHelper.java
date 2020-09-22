@@ -27,7 +27,7 @@ public class ContactAddressBookRecordHelper extends HelperBase{
       type(By.name("firstname"),addressBookRecord.getFirstName());
       type(By.name("middlename"),addressBookRecord.getMiddleName());
       type(By.name("lastname"),addressBookRecord.getLastName());
-      type(By.name("nickname"),addressBookRecord.getNickname());
+      type(By.name("nickname"),addressBookRecord.getNickName());
       type(By.name("title"),addressBookRecord.getTitle());
       type(By.name("company"),addressBookRecord.getCompany());
       type(By.name("address"),addressBookRecord.getAddress());
@@ -136,7 +136,8 @@ public class ContactAddressBookRecordHelper extends HelperBase{
       String lastName = row.findElements(By.tagName("td")).get(1).getText();
       String firstName = row.findElements(By.tagName("td")).get(2).getText();
       int id = Integer.parseInt(row.findElement(By.tagName("input")).getAttribute("value"));
-      ContactAddressBookRecordData contactAddressBookRecordData = new ContactAddressBookRecordData(id,firstName,null,lastName,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null);
+      ContactAddressBookRecordData contactAddressBookRecordData = new ContactAddressBookRecordData().withId(id).withFirstName(firstName).withLastName(lastName);
+
       contactAddressBookRecord.add(contactAddressBookRecordData);
     }
     return contactAddressBookRecord;

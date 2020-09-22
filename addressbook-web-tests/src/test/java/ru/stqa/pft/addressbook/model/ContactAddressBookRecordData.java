@@ -3,91 +3,32 @@ package ru.stqa.pft.addressbook.model;
 import java.util.Objects;
 
 public class ContactAddressBookRecordData {
-  private int id;
-  private final String firstName;
-  private final String middleName;
-  private final String lastName;
-  private final String nickname;
-  private final String title;
-  private final String company;
-  private final String address;
-  private final String home;
-  private final String mobile;
-  private final String work;
-  private final String fax;
-  private final String email;
-  private final String email2;
-  private final String email3;
-  private final String homepage;
-  private final String groupName;
-  private final String address2;
-  private final String home1;
-  private final String notes;
-  private final String bday;
-  private final String bmonth;
-  private final String byear;
-  private final String aday;
-  private final String amonth;
-  private final String ayear;
-
-  public ContactAddressBookRecordData(String firstName, String middleName, String lastName, String nickname, String title, String company, String address, String home, String mobile, String work, String fax, String email, String email2, String email3, String homepage, String groupName, String address2, String home1, String notes, String bday, String bmonth, String byear, String aday, String amonth, String ayear) {
-    this.id=Integer.MAX_VALUE;
-    this.firstName = firstName;
-    this.middleName = middleName;
-    this.lastName = lastName;
-    this.nickname = nickname;
-    this.title = title;
-    this.company = company;
-    this.address = address;
-    this.home = home;
-    this.mobile = mobile;
-    this.work = work;
-    this.fax = fax;
-    this.email = email;
-    this.email2 = email2;
-    this.email3 = email3;
-    this.homepage = homepage;
-    this.groupName = groupName;
-    this.address2 = address2;
-    this.home1 = home1;
-    this.notes = notes;
-    this.bday = bday;
-    this.bmonth = bmonth;
-    this.byear = byear;
-    this.aday = aday;
-    this.amonth = amonth;
-    this.ayear = ayear;
-  }
-
-  public ContactAddressBookRecordData(int id, String firstName, String middleName, String lastName, String nickname, String title, String company, String address, String home, String mobile, String work, String fax, String email, String email2, String email3, String homepage, String groupName, String address2, String home1, String notes, String bday, String bmonth, String byear, String aday, String amonth, String ayear) {
-    this.id=id;
-    this.firstName = firstName;
-    this.middleName = middleName;
-    this.lastName = lastName;
-    this.nickname = nickname;
-    this.title = title;
-    this.company = company;
-    this.address = address;
-    this.home = home;
-    this.mobile = mobile;
-    this.work = work;
-    this.fax = fax;
-    this.email = email;
-    this.email2 = email2;
-    this.email3 = email3;
-    this.homepage = homepage;
-    this.groupName = groupName;
-    this.address2 = address2;
-    this.home1 = home1;
-    this.notes = notes;
-    this.bday = bday;
-    this.bmonth = bmonth;
-    this.byear = byear;
-    this.aday = aday;
-    this.amonth = amonth;
-    this.ayear = ayear;
-  }
-
+  private int id =Integer.MAX_VALUE;
+  private  String firstName;
+  private  String middleName;
+  private  String lastName;
+  private  String nickname;
+  private  String title;
+  private  String company;
+  private  String address;
+  private  String home;
+  private  String mobile;
+  private  String work;
+  private  String fax;
+  private  String email;
+  private  String email2;
+  private  String email3;
+  private  String homepage;
+  private  String groupName;
+  private  String address2;
+  private  String home1;
+  private  String notes;
+  private  String bday;
+  private  String bmonth;
+  private  String byear;
+  private  String aday;
+  private  String amonth;
+  private  String ayear;
 
   public String getFirstName() {
     return firstName;
@@ -101,7 +42,7 @@ public class ContactAddressBookRecordData {
     return lastName;
   }
 
-  public String getNickname() {
+  public String getNickName() {
     return nickname;
   }
 
@@ -189,8 +130,134 @@ public class ContactAddressBookRecordData {
     return ayear;
   }
 
-  public void setId(int id) {
+  public ContactAddressBookRecordData withId(int id) {
     this.id = id;
+    return this;
+  }
+
+  public ContactAddressBookRecordData withFirstName(String firstName) {
+    this.firstName = firstName;
+    return this;
+  }
+
+  public ContactAddressBookRecordData withMiddleName(String middleName) {
+    this.middleName = middleName;
+    return this;
+  }
+
+  public ContactAddressBookRecordData withLastName(String lastName) {
+    this.lastName = lastName;
+    return this;
+  }
+
+  public ContactAddressBookRecordData withNickname(String nickname) {
+    this.nickname = nickname;
+    return this;
+  }
+
+  public ContactAddressBookRecordData withTitle(String title) {
+    this.title = title;
+    return this;
+  }
+
+  public ContactAddressBookRecordData withCompany(String company) {
+    this.company = company;
+    return this;
+  }
+
+  public ContactAddressBookRecordData withAddress(String address) {
+    this.address = address;
+    return this;
+  }
+
+  public ContactAddressBookRecordData withHome(String home) {
+    this.home = home;
+    return this;
+  }
+
+  public ContactAddressBookRecordData withMobile(String mobile) {
+    this.mobile = mobile;
+    return this;
+  }
+
+  public ContactAddressBookRecordData withWork(String work) {
+    this.work = work;
+    return this;
+  }
+
+  public ContactAddressBookRecordData withFax(String fax) {
+    this.fax = fax;
+    return this;
+  }
+
+  public ContactAddressBookRecordData withEmail(String email) {
+    this.email = email;
+    return this;
+  }
+
+  public ContactAddressBookRecordData withEmail2(String email2) {
+    this.email2 = email2;
+    return this;
+  }
+
+  public ContactAddressBookRecordData withEmail3(String email3) {
+    this.email3 = email3;
+    return this;
+  }
+
+  public ContactAddressBookRecordData withHomepage(String homepage) {
+    this.homepage = homepage;
+    return this;
+  }
+
+  public ContactAddressBookRecordData withGroupName(String groupName) {
+    this.groupName = groupName;
+    return this;
+  }
+
+  public ContactAddressBookRecordData withAddress2(String address2) {
+    this.address2 = address2;
+    return this;
+  }
+
+  public ContactAddressBookRecordData withHome1(String home1) {
+    this.home1 = home1;
+    return this;
+  }
+
+  public ContactAddressBookRecordData withNotes(String notes) {
+    this.notes = notes;
+    return this;
+  }
+
+  public ContactAddressBookRecordData withBday(String bday) {
+    this.bday = bday;
+    return this;
+  }
+
+  public ContactAddressBookRecordData withBmonth(String bmonth) {
+    this.bmonth = bmonth;
+    return this;
+  }
+
+  public ContactAddressBookRecordData withByear(String byear) {
+    this.byear = byear;
+    return this;
+  }
+
+  public ContactAddressBookRecordData withAday(String aday) {
+    this.aday = aday;
+    return this;
+  }
+
+  public ContactAddressBookRecordData withAmonth(String amonth) {
+    this.amonth = amonth;
+    return this;
+  }
+
+  public ContactAddressBookRecordData withAyear(String ayear) {
+    this.ayear = ayear;
+    return this;
   }
 
   @Override

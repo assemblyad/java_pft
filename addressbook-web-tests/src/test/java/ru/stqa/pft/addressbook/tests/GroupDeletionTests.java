@@ -18,7 +18,7 @@ public class GroupDeletionTests extends TestBase {
     }
   }
 
-  @Test(enabled = true)
+  @Test(enabled = false)
   public void testGroupDeletion() throws Exception {
     List<GroupData> before = app.group().list();
     int index =before.size()-1;

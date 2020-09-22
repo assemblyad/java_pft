@@ -13,10 +13,10 @@ public class ContactAddressBookDeletionTests extends TestBase {
   public void ensurePreconditions(){
     app.contact().gotoHome();
     if(app.contact().list().size()==0){
-      app.contact().create(new ContactAddressBookRecordData("First name", "Middle_name", "Last_name", "Nickname", "Title", "Company", "Address", "Home", "Mobile", "Work", "Fax", "E-mail", "E-mail2", "E-mail3", "Homepage", "Group name", "Greenwood Village", "Home", "Notes", "5", "April", "1975", "5", "April", "1980"),true);
+      app.contact().create(new ContactAddressBookRecordData().withFirstName("First name").withMiddleName("Middle_name").withLastName("Last_name").withNickname("Nickname").withTitle("Title").withCompany("Company").withAddress("Address").withHome("Home").withMobile("Mobile").withWork("Work").withFax("Fax").withEmail("E-mail").withEmail2("E-mail2").withEmail3("E-mail3").withHomepage("Homepage").withGroupName("Group name").withAddress2("Greenwood Village").withHome1("Home").withNotes("Notes").withBday("5").withBmonth("April").withByear("1975").withAday("5").withAmonth("April").withAyear("1980"),true);
     }
   }
-  @Test(enabled = false)
+  @Test(enabled = true)
   public void testContactAddressBookDeletion() throws Exception {
     List<ContactAddressBookRecordData> before = app.contact().list();
     int index = before.size()-1;

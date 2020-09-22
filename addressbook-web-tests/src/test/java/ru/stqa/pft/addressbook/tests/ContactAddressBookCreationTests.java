@@ -10,11 +10,11 @@ import java.util.List;
 public class ContactAddressBookCreationTests extends TestBase {
 
 
-  @Test(enabled = false)
+  @Test(enabled = true)
   public void testContactAddressBookCreation() throws Exception {
     app.contact().gotoHome();
     List<ContactAddressBookRecordData> before = app.contact().list();
-    ContactAddressBookRecordData contactAddressBookRecordData = new ContactAddressBookRecordData("First_name_03", "Middle_name", "Last_name_03", "Nickname", "Title", "Company", "Address", "Home", "Mobile", "Work", "Fax", "E-mail", "E-mail2", "E-mail3", "Homepage", "Group name", "Greenwood Village", "Home", "Notes", "5", "April", "1975", "5", "April", "1980");
+    ContactAddressBookRecordData contactAddressBookRecordData = new ContactAddressBookRecordData().withFirstName("First_name_03").withMiddleName("Middle_name").withLastName("Last_name_03").withNickname("Nickname").withTitle("Title").withCompany("Company").withAddress("Address").withHome("Home").withMobile("Mobile").withWork("Work").withFax("Fax").withEmail("E-mail").withEmail2("E-mail2").withEmail3("E-mail3").withHomepage("Homepage").withGroupName("Group name").withAddress2("Greenwood Village").withHome1("Home").withNotes("Notes").withBday("5").withBmonth("April").withByear("1975").withAday("5").withAmonth("April").withAyear("1980");
     app.contact().create(contactAddressBookRecordData,true);
     List<ContactAddressBookRecordData> after = app.contact().list();
     Assert.assertEquals(after.size(), before.size() + 1);
@@ -27,7 +27,7 @@ public class ContactAddressBookCreationTests extends TestBase {
       }
 */
 
-    contactAddressBookRecordData.setId(after.stream().max((o1, o2) -> Integer.compare(o1.getId(), o2.getId())).get().getId());
+    contactAddressBookRecordData.withId(after.stream().max((o1, o2) -> Integer.compare(o1.getId(), o2.getId())).get().getId());
     before.add(contactAddressBookRecordData);
 
     Comparator<? super ContactAddressBookRecordData> byId = (Comparator<ContactAddressBookRecordData>) (c1, c2) -> Integer.compare(c1.getId(),c2.getId());
