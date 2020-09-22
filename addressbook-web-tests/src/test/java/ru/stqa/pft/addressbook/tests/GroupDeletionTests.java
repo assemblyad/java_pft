@@ -14,7 +14,7 @@ public class GroupDeletionTests extends TestBase {
     app.goTo().groupPage();
     //please check here validation for group presence
     if(app.group().list().size()==0){
-      app.group().create(new GroupData("Group name", "Header", "Footer"));
+      app.group().create(new GroupData().withName("Group name").withHeader("Header").withFooter("Footer"));
     }
   }
 
