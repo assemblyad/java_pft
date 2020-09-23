@@ -20,7 +20,7 @@ public class ContactAddressBookModificationTests extends TestBase {
   }
 
 
-  @Test(enabled = true)
+  @Test(enabled = false)
   public void testContactAddressBookModification() {
 
 //    int before = app.getContactAddressBookRecordHelper().getContactAddressBookRecordCount();

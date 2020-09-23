@@ -9,7 +9,7 @@ import java.util.Set;
 public class ContactAddressBookCreationTests extends TestBase {
 
 
-  @Test(enabled = true)
+  @Test(enabled = false)
   public void testContactAddressBookCreation() throws Exception {
     app.contact().gotoHome();
     Set<ContactAddressBookRecordData> before = app.contact().all();
