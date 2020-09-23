@@ -8,7 +8,9 @@ import org.testng.Assert;
 import ru.stqa.pft.addressbook.model.ContactAddressBookRecordData;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class ContactAddressBookRecordHelper extends HelperBase{
   public ContactAddressBookRecordHelper(WebDriver wd) {
@@ -92,15 +94,19 @@ public class ContactAddressBookRecordHelper extends HelperBase{
 //    click(By.id("37"));
     boolean acceptNextAlert = true;
   }
-
+  public void selectContactById(int contactId) {
+    wd.findElement(By.cssSelector("input[value='"+contactId+"']")).click();
+  }
   public void initContactAddressRecordsModification() {
     click(By.xpath("//img[@alt='Edit']"));
   }
 
-  public void initContactAddressRecordsModification(int index) {
+  public void initContactAddressRecordsModification(int id) {
 
-      wd.findElements(By.xpath("//tr[@name='entry']["+(index+1)+"]//img[@title='Edit']")).get(0).click();
-}
+//  wd.findElements(By.xpath("//tr[@name='entry']["+(index+1)+"]//img[@title='Edit']")).get(0).click();
+    wd.findElement(By.cssSelector("a[href='edit.php?id="+id+"']")).click();
+  }
+
 
   public void submitContactAddressRecordsModification() {
     click(By.name("update"));
@@ -113,11 +119,11 @@ public class ContactAddressBookRecordHelper extends HelperBase{
     submitContactAddressBookRecord();
     returnedHomePage();
   }
-  public void modify(int index, ContactAddressBookRecordData contactAddressBookRecordData) {
-    selectContact(index);
+  public void modify(ContactAddressBookRecordData contact) {
+    selectContactById(contact.getId());
 //    app.getContactAddressBookRecordHelper().initContactAddressRecordsModification();
-    initContactAddressRecordsModification(index);
-    fillContactAddressBookRecord(contactAddressBookRecordData,false);
+    initContactAddressRecordsModification(contact.getId());
+    fillContactAddressBookRecord(contact,false);
     submitContactAddressRecordsModification();
     gotoHome();
   }
@@ -142,4 +148,19 @@ public class ContactAddressBookRecordHelper extends HelperBase{
     }
     return contactAddressBookRecord;
   }
+  public Set<ContactAddressBookRecordData> all() {
+    Set<ContactAddressBookRecordData> contactAddressBookRecord = new HashSet<ContactAddressBookRecordData>();
+    List <WebElement> rows = wd.findElements(By.cssSelector("tr[name='entry']"));
+    for (WebElement row: rows){
+      String lastName = row.findElements(By.tagName("td")).get(1).getText();
+      String firstName = row.findElements(By.tagName("td")).get(2).getText();
+      int id = Integer.parseInt(row.findElement(By.tagName("input")).getAttribute("value"));
+      ContactAddressBookRecordData contactAddressBookRecordData = new ContactAddressBookRecordData().withId(id).withFirstName(firstName).withLastName(lastName);
+
+      contactAddressBookRecord.add(contactAddressBookRecordData);
+    }
+    return contactAddressBookRecord;
+  }
+
+
 }

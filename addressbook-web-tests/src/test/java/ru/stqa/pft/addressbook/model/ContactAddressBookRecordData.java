@@ -130,6 +130,21 @@ public class ContactAddressBookRecordData {
     return ayear;
   }
 
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) return true;
+    if (o == null || getClass() != o.getClass()) return false;
+    ContactAddressBookRecordData that = (ContactAddressBookRecordData) o;
+    return id == that.id &&
+            Objects.equals(firstName, that.firstName) &&
+            Objects.equals(lastName, that.lastName);
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(id, firstName, lastName);
+  }
+
   public ContactAddressBookRecordData withId(int id) {
     this.id = id;
     return this;
@@ -282,20 +297,6 @@ public class ContactAddressBookRecordData {
     return Objects.hash(firstName, lastName);
   }
 */
-
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) return true;
-    if (o == null || getClass() != o.getClass()) return false;
-    ContactAddressBookRecordData that = (ContactAddressBookRecordData) o;
-    return Objects.equals(firstName, that.firstName) &&
-            Objects.equals(lastName, that.lastName);
-  }
-
-  @Override
-  public int hashCode() {
-    return Objects.hash(firstName, lastName);
-  }
 
   public int getId() {
     return id;
