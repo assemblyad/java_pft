@@ -10,7 +10,7 @@ import java.util.List;
 public class ContactAddressBookCreationTests extends TestBase {
 
 
-  @Test(enabled = true)
+  @Test(enabled = false)
   public void testContactAddressBookCreation() throws Exception {
     app.contact().gotoHome();
     List<ContactAddressBookRecordData> before = app.contact().list();
