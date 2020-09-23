@@ -6,6 +6,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import ru.stqa.pft.addressbook.model.ContactAddressBookRecordData;
+import ru.stqa.pft.addressbook.model.ContactAddressBookRecords;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -148,8 +149,8 @@ public class ContactAddressBookRecordHelper extends HelperBase{
     }
     return contactAddressBookRecord;
   }
-  public Set<ContactAddressBookRecordData> all() {
-    Set<ContactAddressBookRecordData> contactAddressBookRecord = new HashSet<ContactAddressBookRecordData>();
+  public ContactAddressBookRecords all() {
+    ContactAddressBookRecords contactAddressBookRecord = new ContactAddressBookRecords();
     List <WebElement> rows = wd.findElements(By.cssSelector("tr[name='entry']"));
     for (WebElement row: rows){
       String lastName = row.findElements(By.tagName("td")).get(1).getText();
