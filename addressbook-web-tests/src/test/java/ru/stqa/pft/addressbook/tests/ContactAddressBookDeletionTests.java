@@ -23,12 +23,10 @@ public class ContactAddressBookDeletionTests extends TestBase {
     ContactAddressBookRecords before = app.contact().all();
     ContactAddressBookRecordData deletedContact = before.iterator().next();
 //    int index = before.size()-1;
-    app.contact().selectContactById(deletedContact.getId());
-    app.contact().deleteContact();
-    app.contact().acceptAlterMessage();
-    app.contact().gotoHome();
+    app.contact().delete(deletedContact);
+    assertThat(app.group().count(),equalTo(before.size()-1));
     ContactAddressBookRecords after = app.contact().all();
-    assertEquals(after.size(),before.size()-1);
+//    assertEquals(after.size(),before.size()-1);
     assertThat(after, equalTo(before.withOut(deletedContact)));
   }
 

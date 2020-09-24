@@ -30,6 +30,7 @@ public class ContactAddressBookModificationTests extends TestBase {
     ContactAddressBookRecordData contact = new ContactAddressBookRecordData()
             .withId(modifiedContact.getId()).withFirstName("First name8").withMiddleName("Middle_name").withLastName("Last_name8").withNickname("Nickname").withTitle("Title").withCompany("Company").withAddress("Address").withHome("Home").withMobile("Mobile").withWork("Work").withFax("Fax").withEmail("E-mail").withEmail2("E-mail2").withEmail3("E-mail3").withHomepage("Homepage").withGroupName("Group name").withAddress2("Greenwood Village").withHome1("Home").withNotes("Notes").withBday("5").withBmonth("April").withByear("1975").withAday("5").withAmonth("April").withAyear("1980");
     app.contact().modify(contact);
+    assertThat(app.group().count(),equalTo(before.size()));
 //    int after = app.getContactAddressBookRecordHelper().getContactAddressBookRecordCount();
     ContactAddressBookRecords after = app.contact().all();
     Assert.assertEquals(after.size(),before.size());

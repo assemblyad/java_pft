@@ -9,9 +9,7 @@ import ru.stqa.pft.addressbook.model.ContactAddressBookRecordData;
 import ru.stqa.pft.addressbook.model.ContactAddressBookRecords;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 public class ContactAddressBookRecordHelper extends HelperBase{
   public ContactAddressBookRecordHelper(WebDriver wd) {
@@ -118,6 +116,7 @@ public class ContactAddressBookRecordHelper extends HelperBase{
 //    fillContactAddressBookRecord(new ContactAddressBookRecordData("First name", "Middle_name", "Last_name", "Nickname", "Title", "Company", "Address", "Home", "Mobile", "Work", "Fax", "E-mail", "E-mail2", "E-mail3", "Homepage", "Group name", "Greenwood Village", "Home", "Notes", "5", "April", "1975", "5", "April", "1980"),true);
     fillContactAddressBookRecord(contactAddressBookRecordData,true);
     submitContactAddressBookRecord();
+    contactAddressBookRecord = null;
     returnedHomePage();
   }
   public void modify(ContactAddressBookRecordData contact) {
@@ -126,6 +125,15 @@ public class ContactAddressBookRecordHelper extends HelperBase{
     initContactAddressRecordsModification(contact.getId());
     fillContactAddressBookRecord(contact,false);
     submitContactAddressRecordsModification();
+    contactAddressBookRecord = null;
+    gotoHome();
+  }
+
+  public void delete(ContactAddressBookRecordData contact) {
+    selectContactById(contact.getId());
+    deleteContact();
+    acceptAlterMessage();
+    contactAddressBookRecord = null;
     gotoHome();
   }
   public boolean isThereAContactAddressBookRecord() {
@@ -149,8 +157,15 @@ public class ContactAddressBookRecordHelper extends HelperBase{
     }
     return contactAddressBookRecord;
   }
+
+  private ContactAddressBookRecords contactAddressBookRecord = null;
+
   public ContactAddressBookRecords all() {
-    ContactAddressBookRecords contactAddressBookRecord = new ContactAddressBookRecords();
+    if (contactAddressBookRecord !=null) {
+      return new ContactAddressBookRecords(contactAddressBookRecord);
+    }
+
+    contactAddressBookRecord = new ContactAddressBookRecords();
     List <WebElement> rows = wd.findElements(By.cssSelector("tr[name='entry']"));
     for (WebElement row: rows){
       String lastName = row.findElements(By.tagName("td")).get(1).getText();
@@ -160,7 +175,7 @@ public class ContactAddressBookRecordHelper extends HelperBase{
 
       contactAddressBookRecord.add(contactAddressBookRecordData);
     }
-    return contactAddressBookRecord;
+    return new ContactAddressBookRecords(contactAddressBookRecord);
   }
 
 
