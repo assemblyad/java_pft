@@ -32,9 +32,9 @@ public class ContactAddressBookRecordHelper extends HelperBase{
       type(By.name("title"),addressBookRecord.getTitle());
       type(By.name("company"),addressBookRecord.getCompany());
       type(By.name("address"),addressBookRecord.getAddress());
-      type(By.name("home"),addressBookRecord.getHome());
-      type(By.name("mobile"), addressBookRecord.getMobile());
-      type(By.name("work"), addressBookRecord.getWork());
+      type(By.name("home"),addressBookRecord.getHomePhone());
+      type(By.name("mobile"), addressBookRecord.getMobilePhone());
+      type(By.name("work"), addressBookRecord.getWorkPhone());
       type(By.name("fax"),addressBookRecord.getFax());
       type(By.name("email"),addressBookRecord.getEmail());
       type(By.name("email2"), addressBookRecord.getEmail2());
@@ -130,6 +130,7 @@ public class ContactAddressBookRecordHelper extends HelperBase{
   }
   public ContactAddressBookRecordData infoFromEditForm(ContactAddressBookRecordData contact) {
     selectContactById(contact.getId());
+    initContactAddressRecordsModification(contact.getId());
     String firstName = wd.findElement(By.name("firstname")).getAttribute("value");
     String lastName  = wd.findElement(By.name("lastname")).getAttribute("value");
     String home = wd.findElement(By.name("home")).getAttribute("value");
@@ -179,10 +180,13 @@ public class ContactAddressBookRecordHelper extends HelperBase{
     contactAddressBookRecord = new ContactAddressBookRecords();
     List <WebElement> rows = wd.findElements(By.cssSelector("tr[name='entry']"));
     for (WebElement row: rows){
-      String lastName = row.findElements(By.tagName("td")).get(1).getText();
+      String lastName =  row.findElements(By.tagName("td")).get(1).getText();
       String firstName = row.findElements(By.tagName("td")).get(2).getText();
+      String [] phones = row.findElements(By.tagName("td")).get(5).getText().split("\n");
       int id = Integer.parseInt(row.findElement(By.tagName("input")).getAttribute("value"));
-      ContactAddressBookRecordData contactAddressBookRecordData = new ContactAddressBookRecordData().withId(id).withFirstName(firstName).withLastName(lastName);
+      ContactAddressBookRecordData contactAddressBookRecordData = new ContactAddressBookRecordData()
+              .withId(id).withFirstName(firstName).withLastName(lastName).withHomePhone(phones[0])
+              .withMobilePhone(phones[1]).withWorkPhone(phones[2]);
 
       contactAddressBookRecord.add(contactAddressBookRecordData);
     }
