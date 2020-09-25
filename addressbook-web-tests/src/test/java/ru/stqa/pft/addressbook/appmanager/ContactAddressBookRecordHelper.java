@@ -128,6 +128,17 @@ public class ContactAddressBookRecordHelper extends HelperBase{
     contactAddressBookRecord = null; //Лекция 5.7. Кеширование результатов длительных операций
     gotoHome();
   }
+  public ContactAddressBookRecordData infoFromEditForm(ContactAddressBookRecordData contact) {
+    selectContactById(contact.getId());
+    String firstName = wd.findElement(By.name("firstname")).getAttribute("value");
+    String lastName  = wd.findElement(By.name("lastname")).getAttribute("value");
+    String home = wd.findElement(By.name("home")).getAttribute("value");
+    String mobile = wd.findElement(By.name("mobile")).getAttribute("value");
+    String work = wd.findElement(By.name("work")).getAttribute("value");
+    gotoHome();
+    return new ContactAddressBookRecordData().withId(contact.getId())
+            .withFirstName(firstName).withLastName(lastName).withHomePhone(home).withMobilePhone(mobile).withWorkPhone(work);
+  }
 
   public void delete(ContactAddressBookRecordData contact) {
     selectContactById(contact.getId());

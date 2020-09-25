@@ -29,6 +29,38 @@ public class ContactAddressBookRecordData {
   private  String aday;
   private  String amonth;
   private  String ayear;
+/*
+  public  ContactAddressBookRecordData() {
+  }
+  public ContactAddressBookRecordData(ContactAddressBookRecordData contactData) {
+    this.id =contactData.getId();
+    this.firstName=contactData.firstName;
+    this.middleName=contactData.middleName;
+    this.lastName=contactData.lastName;
+    this.nickname=contactData.nickname;
+    this.title=contactData.title;
+    this.company=contactData.company;
+    this.address=contactData.address;
+    this.home=contactData.home;
+    this.mobile=contactData.mobile;
+    this.work=contactData.work;
+    this.fax=contactData.fax;
+    this.email=contactData.email;
+    this.email2=contactData.email2;
+    this.email3=contactData.email3;
+    this.homepage=contactData.homepage;
+    this.groupName=contactData.groupName;
+    this.address2=contactData.address2;
+    this.home1=contactData.home1;
+    this.notes=contactData.notes;
+    this.bday=contactData.bday;
+    this.bmonth=contactData.bmonth;
+    this.byear=contactData.byear;
+    this.aday=contactData.aday;
+    this.amonth=contactData.amonth;
+    this.ayear=contactData.ayear;
+  }
+*/
 
   public String getFirstName() {
     return firstName;
@@ -185,17 +217,17 @@ public class ContactAddressBookRecordData {
     return this;
   }
 
-  public ContactAddressBookRecordData withHome(String home) {
+  public ContactAddressBookRecordData withHomePhone(String home) {
     this.home = home;
     return this;
   }
 
-  public ContactAddressBookRecordData withMobile(String mobile) {
+  public ContactAddressBookRecordData withMobilePhone(String mobile) {
     this.mobile = mobile;
     return this;
   }
 
-  public ContactAddressBookRecordData withWork(String work) {
+  public ContactAddressBookRecordData withWorkPhone(String work) {
     this.work = work;
     return this;
   }
