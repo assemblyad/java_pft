@@ -24,7 +24,7 @@ public class ContactAddressBookDeletionTests extends TestBase {
     ContactAddressBookRecordData deletedContact = before.iterator().next();
 //    int index = before.size()-1;
     app.contact().delete(deletedContact);
-    assertThat(app.group().count(),equalTo(before.size()-1));
+    assertThat(app.contact().count(), equalTo(before.size()-1)); //Лекция 5.8. Хеширование и предварительные проверки
     ContactAddressBookRecords after = app.contact().all();
 //    assertEquals(after.size(),before.size()-1);
     assertThat(after, equalTo(before.withOut(deletedContact)));

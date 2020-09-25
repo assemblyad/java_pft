@@ -116,7 +116,7 @@ public class ContactAddressBookRecordHelper extends HelperBase{
 //    fillContactAddressBookRecord(new ContactAddressBookRecordData("First name", "Middle_name", "Last_name", "Nickname", "Title", "Company", "Address", "Home", "Mobile", "Work", "Fax", "E-mail", "E-mail2", "E-mail3", "Homepage", "Group name", "Greenwood Village", "Home", "Notes", "5", "April", "1975", "5", "April", "1980"),true);
     fillContactAddressBookRecord(contactAddressBookRecordData,true);
     submitContactAddressBookRecord();
-    contactAddressBookRecord = null;
+    contactAddressBookRecord = null; //Лекция 5.7. Кеширование результатов длительных операций
     returnedHomePage();
   }
   public void modify(ContactAddressBookRecordData contact) {
@@ -125,7 +125,7 @@ public class ContactAddressBookRecordHelper extends HelperBase{
     initContactAddressRecordsModification(contact.getId());
     fillContactAddressBookRecord(contact,false);
     submitContactAddressRecordsModification();
-    contactAddressBookRecord = null;
+    contactAddressBookRecord = null; //Лекция 5.7. Кеширование результатов длительных операций
     gotoHome();
   }
 
@@ -133,14 +133,14 @@ public class ContactAddressBookRecordHelper extends HelperBase{
     selectContactById(contact.getId());
     deleteContact();
     acceptAlterMessage();
-    contactAddressBookRecord = null;
+    contactAddressBookRecord = null; //Лекция 5.7. Кеширование результатов длительных операций
     gotoHome();
   }
   public boolean isThereAContactAddressBookRecord() {
     return isElementPresent(By.name("selected[]"));
   }
 
-  public int getContactAddressBookRecordCount() {
+  public int count() {
     return  wd.findElements(By.name("selected[]")).size();
   }
 
@@ -158,7 +158,7 @@ public class ContactAddressBookRecordHelper extends HelperBase{
     return contactAddressBookRecord;
   }
 
-  private ContactAddressBookRecords contactAddressBookRecord = null;
+  private ContactAddressBookRecords contactAddressBookRecord = null;  //Лекция 5.7. Кеширование результатов длительных операций
 
   public ContactAddressBookRecords all() {
     if (contactAddressBookRecord !=null) {
