@@ -136,9 +136,14 @@ public class ContactAddressBookRecordHelper extends HelperBase{
     String home = wd.findElement(By.name("home")).getAttribute("value");
     String mobile = wd.findElement(By.name("mobile")).getAttribute("value");
     String work = wd.findElement(By.name("work")).getAttribute("value");
+    String email = wd.findElement(By.name("email")).getAttribute("value");
+    String email1 = wd.findElement(By.name("email2")).getAttribute("value");
+    String email2 = wd.findElement(By.name("email3")).getAttribute("value");
+    String mail = wd.findElement(By.name("address")).getText();
     gotoHome();
     return new ContactAddressBookRecordData().withId(contact.getId())
-            .withFirstName(firstName).withLastName(lastName).withHomePhone(home).withMobilePhone(mobile).withWorkPhone(work);
+            .withFirstName(firstName).withLastName(lastName).withHomePhone(home).withMobilePhone(mobile).withWorkPhone(work)
+            .withEmail(email).withEmail2(email1).withEmail3(email2).withAddress(mail);
   }
 
   public void delete(ContactAddressBookRecordData contact) {
@@ -182,11 +187,13 @@ public class ContactAddressBookRecordHelper extends HelperBase{
     for (WebElement row: rows){
       String lastName =  row.findElements(By.tagName("td")).get(1).getText();
       String firstName = row.findElements(By.tagName("td")).get(2).getText();
-      String [] phones = row.findElements(By.tagName("td")).get(5).getText().split("\n");
+//    String [] phones = row.findElements(By.tagName("td")).get(5).getText().split("\n"); // Лекция 5.10. Режем строки (и немного про регулярные выражения)
+      String allPhones = row.findElements(By.tagName("td")).get(5).getText(); //Лекция 5.11. Клеим строки: метод обратных проверок
+      String allEmails = row.findElements(By.tagName("td")).get(4).getText(); //Лекция 5.11. Клеим строки: метод обратных проверок
+      String mail = row.findElements(By.tagName("td")).get(3).getText(); //Лекция 5.11. Клеим строки: метод обратных проверок
       int id = Integer.parseInt(row.findElement(By.tagName("input")).getAttribute("value"));
       ContactAddressBookRecordData contactAddressBookRecordData = new ContactAddressBookRecordData()
-              .withId(id).withFirstName(firstName).withLastName(lastName).withHomePhone(phones[0])
-              .withMobilePhone(phones[1]).withWorkPhone(phones[2]);
+              .withId(id).withFirstName(firstName).withLastName(lastName).withAllPhone(allPhones).withAllEmails(allEmails).withAddress(mail);
 
       contactAddressBookRecord.add(contactAddressBookRecordData);
     }
