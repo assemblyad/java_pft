@@ -25,10 +25,10 @@ public class ContactMailTests extends TestBase {
     app.goTo().gotoHomePage();
     ContactAddressBookRecordData contact = app.contact().all().iterator().next();
     ContactAddressBookRecordData contactInfoFromEditForm = app.contact().infoFromEditForm(contact);
-    assertThat(contact.getAddress(), equalTo(mergeEmails(contactInfoFromEditForm)));
+    assertThat(contact.getAddress(), equalTo(mail(contactInfoFromEditForm)));
   }
 
-  private String mergeEmails(ContactAddressBookRecordData contact) {
+  private String mail(ContactAddressBookRecordData contact) {
     return Arrays.asList(cleaned(contact.getAddress()))
             .stream().filter((s) -> !s.equals("")).map(ContactEmailTest::cleaned).collect(Collectors.joining("\n"));
   }
