@@ -33,19 +33,9 @@ public class HelperBase {
   }
 
   protected void attach (By locator, File file) {
-
-/*    if (text!=null) {
-      String existingText = wd.findElement(locator).getAttribute("value");
-      if (!text.equals(existingText)){
-
- */
     if (file!=null){
       wd.findElement(locator).sendKeys(file.getAbsolutePath());
     }
-
-
-//      }
-//    }
   }
 
   protected void select(By locator, String text) {

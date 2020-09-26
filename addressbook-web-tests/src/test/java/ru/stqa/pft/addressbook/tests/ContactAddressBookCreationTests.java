@@ -16,7 +16,7 @@ public class ContactAddressBookCreationTests extends TestBase {
   public void testContactAddressBookCreation() throws Exception {
     app.contact().gotoHome();
     ContactAddressBookRecords before = app.contact().all();
-    File photo= new File("src/test/resources/stru.png");
+    File photo= new File("src/test/resources/stru.png"); //Лекция 6.1. Пути к файлам и директориям
     ContactAddressBookRecordData contactAddressBookRecordData = new ContactAddressBookRecordData()
             .withFirstName("First_name_03").withMiddleName("Middle_name").withLastName("Last_name_03").withNickname("Nickname")
             .withTitle("Title").withCompany("Company").withAddress("Address").withHomePhone("").withMobilePhone("222")
@@ -25,7 +25,7 @@ public class ContactAddressBookCreationTests extends TestBase {
             .withNotes("Notes").withBday("5").withBmonth("April").withByear("1975").withAday("5").withAmonth("April")
             .withAyear("1980").withPhoto(photo);
     app.contact().create(contactAddressBookRecordData,true);
-    assertThat(app.contact().count(), equalTo(before.size()));
+    assertThat(app.contact().count(), equalTo(before.size()+1));
     ContactAddressBookRecords after = app.contact().all();
 //    contactAddressBookRecordData.withId(after.stream().max((o1, o2) -> Integer.compare(o1.getId(), o2.getId())).get().getId());
 //    before.add(contactAddressBookRecordData);
