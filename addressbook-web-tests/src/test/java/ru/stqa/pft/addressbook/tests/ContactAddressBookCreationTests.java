@@ -4,6 +4,8 @@ import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.ContactAddressBookRecordData;
 import ru.stqa.pft.addressbook.model.ContactAddressBookRecords;
 
+import java.io.File;
+
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
 
@@ -14,7 +16,14 @@ public class ContactAddressBookCreationTests extends TestBase {
   public void testContactAddressBookCreation() throws Exception {
     app.contact().gotoHome();
     ContactAddressBookRecords before = app.contact().all();
-    ContactAddressBookRecordData contactAddressBookRecordData = new ContactAddressBookRecordData().withFirstName("First_name_03").withMiddleName("Middle_name").withLastName("Last_name_03").withNickname("Nickname").withTitle("Title").withCompany("Company").withAddress("Address").withHomePhone("").withMobilePhone("222").withWorkPhone("111").withFax("Fax").withEmail("E-mail").withEmail2("E-mail2").withEmail3("E-mail3").withHomepage("Homepage").withGroupName("Group name").withAddress2("Greenwood Village").withHome1("Home").withNotes("Notes").withBday("5").withBmonth("April").withByear("1975").withAday("5").withAmonth("April").withAyear("1980");
+    File photo= new File("src/test/resources/stru.png");
+    ContactAddressBookRecordData contactAddressBookRecordData = new ContactAddressBookRecordData()
+            .withFirstName("First_name_03").withMiddleName("Middle_name").withLastName("Last_name_03").withNickname("Nickname")
+            .withTitle("Title").withCompany("Company").withAddress("Address").withHomePhone("").withMobilePhone("222")
+            .withWorkPhone("111").withFax("Fax").withEmail("E-mail").withEmail2("E-mail2").withEmail3("E-mail3")
+            .withHomepage("Homepage").withGroupName("Group name").withAddress2("Greenwood Village").withHome1("Home")
+            .withNotes("Notes").withBday("5").withBmonth("April").withByear("1975").withAday("5").withAmonth("April")
+            .withAyear("1980").withPhoto(photo);
     app.contact().create(contactAddressBookRecordData,true);
     assertThat(app.contact().count(), equalTo(before.size()));
     ContactAddressBookRecords after = app.contact().all();
@@ -39,4 +48,14 @@ public class ContactAddressBookCreationTests extends TestBase {
 
     assertThat(after, equalTo(before));
   }
+/*
+  @Test
+  public void testCurrentDir(){
+    File currentDir = new File(".");
+    System.out.println(currentDir.getAbsolutePath());
+    File photo= new File("src/test/resources/stru.png");
+    System.out.println(photo.getAbsoluteFile());
+    System.out.println(photo.exists());
+  }
+ */
 }

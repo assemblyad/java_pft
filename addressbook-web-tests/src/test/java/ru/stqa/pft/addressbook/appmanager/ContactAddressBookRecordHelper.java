@@ -46,6 +46,9 @@ public class ContactAddressBookRecordHelper extends HelperBase{
       select(By.name("aday"), addressBookRecord.getAday());
       select(By.name("amonth"), addressBookRecord.getAmonth());
       type(By.name("ayear"),addressBookRecord.getAyear());
+      type(By.name("photo"),addressBookRecord.getPhoto().getAbsolutePath());
+      //attach(By.name("photo"), addressBookRecord.getPhoto());
+
       if(creation){
         new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(addressBookRecord.getGroupName());
       } else {

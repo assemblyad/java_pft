@@ -1,5 +1,6 @@
 package ru.stqa.pft.addressbook.model;
 
+import java.io.File;
 import java.util.Objects;
 
 public class ContactAddressBookRecordData {
@@ -31,41 +32,49 @@ public class ContactAddressBookRecordData {
   private  String ayear;
   private String allPhones;
   private String allEmails;
+  private File photo;
 
+  public File getPhoto() {
+    return photo;
+  }
 
+  public ContactAddressBookRecordData withPhoto(File photo) {
+    this.photo = photo;
+    return this;
+  }
 
   /*
-    public  ContactAddressBookRecordData() {
-    }
-    public ContactAddressBookRecordData(ContactAddressBookRecordData contactData) {
-      this.id =contactData.getId();
-      this.firstName=contactData.firstName;
-      this.middleName=contactData.middleName;
-      this.lastName=contactData.lastName;
-      this.nickname=contactData.nickname;
-      this.title=contactData.title;
-      this.company=contactData.company;
-      this.address=contactData.address;
-      this.home=contactData.home;
-      this.mobile=contactData.mobile;
-      this.work=contactData.work;
-      this.fax=contactData.fax;
-      this.email=contactData.email;
-      this.email2=contactData.email2;
-      this.email3=contactData.email3;
-      this.homepage=contactData.homepage;
-      this.groupName=contactData.groupName;
-      this.address2=contactData.address2;
-      this.home1=contactData.home1;
-      this.notes=contactData.notes;
-      this.bday=contactData.bday;
-      this.bmonth=contactData.bmonth;
-      this.byear=contactData.byear;
-      this.aday=contactData.aday;
-      this.amonth=contactData.amonth;
-      this.ayear=contactData.ayear;
-    }
-  */
+      public  ContactAddressBookRecordData() {
+      }
+      public ContactAddressBookRecordData(ContactAddressBookRecordData contactData) {
+        this.id =contactData.getId();
+        this.firstName=contactData.firstName;
+        this.middleName=contactData.middleName;
+        this.lastName=contactData.lastName;
+        this.nickname=contactData.nickname;
+        this.title=contactData.title;
+        this.company=contactData.company;
+        this.address=contactData.address;
+        this.home=contactData.home;
+        this.mobile=contactData.mobile;
+        this.work=contactData.work;
+        this.fax=contactData.fax;
+        this.email=contactData.email;
+        this.email2=contactData.email2;
+        this.email3=contactData.email3;
+        this.homepage=contactData.homepage;
+        this.groupName=contactData.groupName;
+        this.address2=contactData.address2;
+        this.home1=contactData.home1;
+        this.notes=contactData.notes;
+        this.bday=contactData.bday;
+        this.bmonth=contactData.bmonth;
+        this.byear=contactData.byear;
+        this.aday=contactData.aday;
+        this.amonth=contactData.amonth;
+        this.ayear=contactData.ayear;
+      }
+    */
   public int getId() {
   return id;
 }
