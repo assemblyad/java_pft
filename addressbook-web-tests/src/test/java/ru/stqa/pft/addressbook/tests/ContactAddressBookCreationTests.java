@@ -18,7 +18,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 public class ContactAddressBookCreationTests extends TestBase {
 
   @DataProvider
-  public Iterator<Object[]> validContactAddressBookRecords() throws IOException {
+  public Iterator<Object[]> validContactAddressBookRecordsFromXml() throws IOException {
     List<Object[]> list = new ArrayList<Object[]>();
     BufferedReader reader = new BufferedReader(new FileReader(new File("src/test/resources/ContactAddressBookRecords.xml")));
     String xml ="";
@@ -43,7 +43,7 @@ public class ContactAddressBookCreationTests extends TestBase {
 //    return list.iterator();
   }
 
-  @Test(enabled = true, dataProvider = "validContactAddressBookRecords")
+  @Test(enabled = true, dataProvider = "validContactAddressBookRecordsFromXml")
   public void testContactAddressBookCreation(ContactAddressBookRecordData contact) throws Exception {
     app.contact().gotoHome();
     ContactAddressBookRecords before = app.contact().all();
