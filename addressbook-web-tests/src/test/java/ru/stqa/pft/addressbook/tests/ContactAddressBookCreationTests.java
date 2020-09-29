@@ -1,5 +1,7 @@
 package ru.stqa.pft.addressbook.tests;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.thoughtworks.xstream.XStream;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
@@ -43,7 +45,33 @@ public class ContactAddressBookCreationTests extends TestBase {
 //    return list.iterator();
   }
 
-  @Test(enabled = true, dataProvider = "validContactAddressBookRecordsFromXml")
+  @DataProvider
+  public Iterator<Object[]> validContactAddressBookRecordsFromJson() throws IOException {
+    List<Object[]> list = new ArrayList<Object[]>();
+    BufferedReader reader = new BufferedReader(new FileReader(new File("src/test/resources/ContactAddressBookRecords.json")));
+    String json ="";
+    String line = reader.readLine();
+    while (line!=null){
+//      String[] split = line.split(";"); // for csv
+//      list.add(new Object[] {new ContactAddressBookRecordData().withFirstName(split[0]).withLastName(split[1])}); //for csv
+      json +=line;
+      line = reader.readLine();
+    }
+
+    Gson gson= new Gson();
+    List<ContactAddressBookRecordData> contacts =
+            gson.fromJson(json, new TypeToken<List<ContactAddressBookRecordData>>(){}.getType());
+//    BagOfPrimitives obj2 = gson.fromJson(json, BagOfPrimitives.class);
+    return contacts.stream().map((c->new Object[]{c})).collect(Collectors.toList()).iterator();
+/*
+    list.add(new Object[] {new ContactAddressBookRecordData().withFirstName("Alex1").withLastName("Demi1")});
+    list.add(new Object[] {new ContactAddressBookRecordData().withFirstName("Alex2'").withLastName("Demi2'")});
+    list.add(new Object[] {new ContactAddressBookRecordData().withFirstName("Alex3").withLastName("Demi3")});
+ */
+//    return list.iterator();
+  }
+
+  @Test(enabled = true, dataProvider = "validContactAddressBookRecordsFromJson")
   public void testContactAddressBookCreation(ContactAddressBookRecordData contact) throws Exception {
     app.contact().gotoHome();
     ContactAddressBookRecords before = app.contact().all();
