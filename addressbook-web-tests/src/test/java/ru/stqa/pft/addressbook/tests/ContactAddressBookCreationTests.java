@@ -1,38 +1,62 @@
 package ru.stqa.pft.addressbook.tests;
 
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.ContactAddressBookRecordData;
 import ru.stqa.pft.addressbook.model.ContactAddressBookRecords;
 
-import java.io.File;
+import java.io.*;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
 
 public class ContactAddressBookCreationTests extends TestBase {
 
+  @DataProvider
+  public Iterator<Object[]> validContactAddressBookRecords() throws IOException {
+    List<Object[]> list = new ArrayList<Object[]>();
+    BufferedReader reader = new BufferedReader(new FileReader(new File("src/test/resources/ContactAddressBookRecords.csv")));
+    String line = reader.readLine();
+    while (line!=null){
+      String[] split = line.split(";");
+      list.add(new Object[] {new ContactAddressBookRecordData().withFirstName(split[0]).withLastName(split[1])});
+      line = reader.readLine();
 
-  @Test(enabled = true)
-  public void testContactAddressBookCreation() throws Exception {
+    }
+/*
+    list.add(new Object[] {new ContactAddressBookRecordData().withFirstName("Alex1").withLastName("Demi1")});
+    list.add(new Object[] {new ContactAddressBookRecordData().withFirstName("Alex2'").withLastName("Demi2'")});
+    list.add(new Object[] {new ContactAddressBookRecordData().withFirstName("Alex3").withLastName("Demi3")});
+ */
+    return list.iterator();
+  }
+
+  @Test(enabled = true, dataProvider = "validContactAddressBookRecords")
+  public void testContactAddressBookCreation(ContactAddressBookRecordData contact) throws Exception {
     app.contact().gotoHome();
     ContactAddressBookRecords before = app.contact().all();
     File photo= new File("src/test/resources/stru.png"); //Лекция 6.1. Пути к файлам и директориям
-    ContactAddressBookRecordData contactAddressBookRecordData = new ContactAddressBookRecordData()
+/*
+    ContactAddressBookRecordData contact = new ContactAddressBookRecordData()
             .withFirstName("First_name_03").withMiddleName("Middle_name").withLastName("Last_name_03").withNickname("Nickname")
             .withTitle("Title").withCompany("Company").withAddress("Address").withHomePhone("").withMobilePhone("222")
             .withWorkPhone("111").withFax("Fax").withEmail("E-mail").withEmail2("E-mail2").withEmail3("E-mail3")
             .withHomepage("Homepage").withGroupName("Group name").withAddress2("Greenwood Village").withHome1("Home")
             .withNotes("Notes").withBday("5").withBmonth("April").withByear("1975").withAday("5").withAmonth("April")
             .withAyear("1980").withPhoto(photo);
-    app.contact().create(contactAddressBookRecordData,true);
+ */
+    app.contact().create(contact,true);
     assertThat(app.contact().count(), equalTo(before.size()+1));
     ContactAddressBookRecords after = app.contact().all();
-//    contactAddressBookRecordData.withId(after.stream().max((o1, o2) -> Integer.compare(o1.getId(), o2.getId())).get().getId());
-//    before.add(contactAddressBookRecordData);
+//    contact.withId(after.stream().max((o1, o2) -> Integer.compare(o1.getId(), o2.getId())).get().getId());
+//    before.add(contact);
 //    Assert.assertEquals(new HashSet<>(before), new HashSet<>(after));
 
     assertThat(after, equalTo(
-            before.withAdded(contactAddressBookRecordData.withId(after.stream().mapToInt((c)->c.getId()).max().getAsInt()))));
+            before.withAdded(contact.withId(after.stream().mapToInt((c)->c.getId()).max().getAsInt()))));
   }
   @Test(enabled = false)
   public void testContactBadAddressBookCreation() throws Exception {
@@ -48,8 +72,8 @@ public class ContactAddressBookCreationTests extends TestBase {
 
     assertThat(after, equalTo(before));
   }
-/*
-  @Test
+
+  @Test(enabled = false)
   public void testCurrentDir(){
     File currentDir = new File(".");
     System.out.println(currentDir.getAbsolutePath());
@@ -57,5 +81,5 @@ public class ContactAddressBookCreationTests extends TestBase {
     System.out.println(photo.getAbsoluteFile());
     System.out.println(photo.exists());
   }
- */
+
 }

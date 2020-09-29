@@ -50,7 +50,7 @@ public class ContactAddressBookRecordHelper extends HelperBase{
       attach(By.name("photo"), addressBookRecord.getPhoto());
 
       if(creation){
-        new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(addressBookRecord.getGroupName());
+        select(By.name("new_group"), addressBookRecord.getGroupName());
       } else {
         Assert.assertFalse(isElementPresent(By.name("new_group")));
       }
