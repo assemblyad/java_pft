@@ -22,7 +22,7 @@ public class ContactAddressBookCreationTests extends TestBase {
   @DataProvider
   public Iterator<Object[]> validContactAddressBookRecordsFromXml() throws IOException {
     List<Object[]> list = new ArrayList<Object[]>();
-    BufferedReader reader = new BufferedReader(new FileReader(new File("src/test/resources/ContactAddressBookRecords.xml")));
+    try(BufferedReader reader = new BufferedReader(new FileReader(new File("src/test/resources/ContactAddressBookRecords.xml")))){
     String xml ="";
     String line = reader.readLine();
     while (line!=null){
@@ -43,6 +43,7 @@ public class ContactAddressBookCreationTests extends TestBase {
     list.add(new Object[] {new ContactAddressBookRecordData().withFirstName("Alex3").withLastName("Demi3")});
  */
 //    return list.iterator();
+    }
   }
 
   @DataProvider
