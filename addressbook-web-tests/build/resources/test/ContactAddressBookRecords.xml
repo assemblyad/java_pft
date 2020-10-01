@@ -1,0 +1,80 @@
+<list>
+  <ContactAddressBookRecordData>
+    <firstName>First Name 0</firstName>
+    <middleName>Middle Name 0</middleName>
+    <lastName>Last Name 0</lastName>
+    <nickname>Nickname 0</nickname>
+    <title>Title 0</title>
+    <company>Company 0</company>
+    <address>Address 0</address>
+    <home>Home 0</home>
+    <mobile>Mobile 0</mobile>
+    <work>Work 0</work>
+    <fax>Fax 0</fax>
+    <email>gt0@test1.com</email>
+    <email2>gt0@test2.com</email2>
+    <email3>gt0@test3.com</email3>
+    <homepage>Homepage 0</homepage>
+    <address2>Address2 0</address2>
+    <home1>Home1 0</home1>
+    <notes>Notes 0</notes>
+    <bday>5</bday>
+    <bmonth>April</bmonth>
+    <byear>1975</byear>
+    <aday>15</aday>
+    <amonth>April</amonth>
+    <ayear>1985</ayear>
+  </ContactAddressBookRecordData>
+  <ContactAddressBookRecordData>
+    <firstName>First Name 1</firstName>
+    <middleName>Middle Name 1</middleName>
+    <lastName>Last Name 1</lastName>
+    <nickname>Nickname 1</nickname>
+    <title>Title 1</title>
+    <company>Company 1</company>
+    <address>Address 1</address>
+    <home>Home 1</home>
+    <mobile>Mobile 1</mobile>
+    <work>Work 1</work>
+    <fax>Fax 1</fax>
+    <email>gt1@test1.com</email>
+    <email2>gt1@test2.com</email2>
+    <email3>gt1@test3.com</email3>
+    <homepage>Homepage 1</homepage>
+    <address2>Address2 1</address2>
+    <home1>Home1 1</home1>
+    <notes>Notes 1</notes>
+    <bday>5</bday>
+    <bmonth>April</bmonth>
+    <byear>1975</byear>
+    <aday>15</aday>
+    <amonth>April</amonth>
+    <ayear>1985</ayear>
+  </ContactAddressBookRecordData>
+  <ContactAddressBookRecordData>
+    <firstName>First Name 2</firstName>
+    <middleName>Middle Name 2</middleName>
+    <lastName>Last Name 2</lastName>
+    <nickname>Nickname 2</nickname>
+    <title>Title 2</title>
+    <company>Company 2</company>
+    <address>Address 2</address>
+    <home>Home 2</home>
+    <mobile>Mobile 2</mobile>
+    <work>Work 2</work>
+    <fax>Fax 2</fax>
+    <email>gt2@test1.com</email>
+    <email2>gt2@test2.com</email2>
+    <email3>gt2@test3.com</email3>
+    <homepage>Homepage 2</homepage>
+    <address2>Address2 2</address2>
+    <home1>Home1 2</home1>
+    <notes>Notes 2</notes>
+    <bday>5</bday>
+    <bmonth>April</bmonth>
+    <byear>1975</byear>
+    <aday>15</aday>
+    <amonth>April</amonth>
+    <ayear>1985</ayear>
+  </ContactAddressBookRecordData>
+</list>
