@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="ru.stqa.pft.addressbook.tests.ContactAddressBookCreationTests" tests="3" skipped="0" failures="0" errors="0" timestamp="2020-10-01T01:04:33" hostname="ADEMIDIONOK-LT" time="38.06">
+<testsuite name="ru.stqa.pft.addressbook.tests.ContactAddressBookCreationTests" tests="3" skipped="0" failures="0" errors="0" timestamp="2020-10-01T02:10:49" hostname="ADEMIDIONOK-LT" time="49.983">
   <properties/>
-  <testcase name="testContactAddressBookCreation[0](ContactAddressBookRecordData{firstName='First Name 0', lastName='Last Name 0'})" classname="ru.stqa.pft.addressbook.tests.ContactAddressBookCreationTests" time="16.861"/>
-  <testcase name="testContactAddressBookCreation[1](ContactAddressBookRecordData{firstName='First Name 1', lastName='Last Name 1'})" classname="ru.stqa.pft.addressbook.tests.ContactAddressBookCreationTests" time="9.883"/>
-  <testcase name="testContactAddressBookCreation[2](ContactAddressBookRecordData{firstName='First Name 2', lastName='Last Name 2'})" classname="ru.stqa.pft.addressbook.tests.ContactAddressBookCreationTests" time="11.313"/>
+  <testcase name="testContactAddressBookCreation[0](ContactAddressBookRecordData{firstName='First Name 0', lastName='Last Name 0'})" classname="ru.stqa.pft.addressbook.tests.ContactAddressBookCreationTests" time="21.724"/>
+  <testcase name="testContactAddressBookCreation[1](ContactAddressBookRecordData{firstName='First Name 1', lastName='Last Name 1'})" classname="ru.stqa.pft.addressbook.tests.ContactAddressBookCreationTests" time="14.567"/>
+  <testcase name="testContactAddressBookCreation[2](ContactAddressBookRecordData{firstName='First Name 2', lastName='Last Name 2'})" classname="ru.stqa.pft.addressbook.tests.ContactAddressBookCreationTests" time="13.686"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>
