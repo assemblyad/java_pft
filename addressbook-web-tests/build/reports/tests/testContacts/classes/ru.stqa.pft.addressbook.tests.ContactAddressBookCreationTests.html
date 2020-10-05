@@ -23,7 +23,7 @@
 <tr>
 <td>
 <div class="infoBox" id="tests">
-<div class="counter">3</div>
+<div class="counter">4</div>
 <p>tests</p>
 </div>
 </td>
@@ -41,7 +41,7 @@
 </td>
 <td>
 <div class="infoBox" id="duration">
-<div class="counter">49.977s</div>
+<div class="counter">28.390s</div>
 <p>duration</p>
 </div>
 </td>
@@ -63,6 +63,9 @@
 <li>
 <a href="#tab0">Tests</a>
 </li>
+<li>
+<a href="#tab1">Standard output</a>
+</li>
 </ul>
 <div id="tab0" class="tab">
 <h2>Tests</h2>
@@ -75,21 +78,56 @@
 </tr>
 </thead>
 <tr>
-<td class="success">testContactAddressBookCreation[0](ContactAddressBookRecordData{firstName='First Name 0', lastName='Last Name 0'})</td>
-<td class="success">21.724s</td>
+<td class="success">testContactAddressBookCreation[0](ContactAddressBookRecordData{id=2147483647, firstName='First Name 0', lastName='Last Name 0'})</td>
+<td class="success">6.643s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
-<td class="success">testContactAddressBookCreation[1](ContactAddressBookRecordData{firstName='First Name 1', lastName='Last Name 1'})</td>
-<td class="success">14.567s</td>
+<td class="success">testContactAddressBookCreation[1](ContactAddressBookRecordData{id=2147483647, firstName='First Name 1', lastName='Last Name 1'})</td>
+<td class="success">7.614s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
-<td class="success">testContactAddressBookCreation[2](ContactAddressBookRecordData{firstName='First Name 2', lastName='Last Name 2'})</td>
-<td class="success">13.686s</td>
+<td class="success">testContactAddressBookCreation[2](ContactAddressBookRecordData{id=2147483647, firstName='First Name 2', lastName='Last Name 2'})</td>
+<td class="success">7.257s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">testContactBadAddressBookCreation</td>
+<td class="success">6.876s</td>
 <td class="success">passed</td>
 </tr>
 </table>
+</div>
+<div id="tab1" class="tab">
+<h2>Standard output</h2>
+<span class="code">
+<pre>22:41:19.566 [Test worker] INFO  r.s.pft.addressbook.tests.TestBase - Start test testContactAddressBookCreation with parameters [ContactAddressBookRecordData{id=2147483647, firstName='First Name 0', lastName='Last Name 0'}]
+Hibernate: select contactadd0_.id as id1_0_, contactadd0_.address as address2_0_, contactadd0_.address2 as address3_0_, contactadd0_.amonth as amonth4_0_, contactadd0_.ayear as ayear5_0_, contactadd0_.bmonth as bmonth6_0_, contactadd0_.byear as byear7_0_, contactadd0_.company as company8_0_, contactadd0_.email as email9_0_, contactadd0_.email2 as email10_0_, contactadd0_.email3 as email11_0_, contactadd0_.fax as fax12_0_, contactadd0_.firstName as firstna13_0_, contactadd0_.home as home14_0_, contactadd0_.homepage as homepag15_0_, contactadd0_.lastName as lastnam16_0_, contactadd0_.middleName as middlen17_0_, contactadd0_.mobile as mobile18_0_, contactadd0_.nickname as nicknam19_0_, contactadd0_.notes as notes20_0_, contactadd0_.phone2 as phone21_0_, contactadd0_.photo as photo22_0_, contactadd0_.title as title23_0_, contactadd0_.work as work24_0_ from addressbook contactadd0_
+Hibernate: select contactadd0_.id as id1_0_, contactadd0_.address as address2_0_, contactadd0_.address2 as address3_0_, contactadd0_.amonth as amonth4_0_, contactadd0_.ayear as ayear5_0_, contactadd0_.bmonth as bmonth6_0_, contactadd0_.byear as byear7_0_, contactadd0_.company as company8_0_, contactadd0_.email as email9_0_, contactadd0_.email2 as email10_0_, contactadd0_.email3 as email11_0_, contactadd0_.fax as fax12_0_, contactadd0_.firstName as firstna13_0_, contactadd0_.home as home14_0_, contactadd0_.homepage as homepag15_0_, contactadd0_.lastName as lastnam16_0_, contactadd0_.middleName as middlen17_0_, contactadd0_.mobile as mobile18_0_, contactadd0_.nickname as nicknam19_0_, contactadd0_.notes as notes20_0_, contactadd0_.phone2 as phone21_0_, contactadd0_.photo as photo22_0_, contactadd0_.title as title23_0_, contactadd0_.work as work24_0_ from addressbook contactadd0_
+Hibernate: select contactadd0_.id as id1_0_, contactadd0_.address as address2_0_, contactadd0_.address2 as address3_0_, contactadd0_.amonth as amonth4_0_, contactadd0_.ayear as ayear5_0_, contactadd0_.bmonth as bmonth6_0_, contactadd0_.byear as byear7_0_, contactadd0_.company as company8_0_, contactadd0_.email as email9_0_, contactadd0_.email2 as email10_0_, contactadd0_.email3 as email11_0_, contactadd0_.fax as fax12_0_, contactadd0_.firstName as firstna13_0_, contactadd0_.home as home14_0_, contactadd0_.homepage as homepag15_0_, contactadd0_.lastName as lastnam16_0_, contactadd0_.middleName as middlen17_0_, contactadd0_.mobile as mobile18_0_, contactadd0_.nickname as nicknam19_0_, contactadd0_.notes as notes20_0_, contactadd0_.phone2 as phone21_0_, contactadd0_.photo as photo22_0_, contactadd0_.title as title23_0_, contactadd0_.work as work24_0_ from addressbook contactadd0_
+Hibernate: select contactadd0_.id as id1_0_, contactadd0_.address as address2_0_, contactadd0_.address2 as address3_0_, contactadd0_.amonth as amonth4_0_, contactadd0_.ayear as ayear5_0_, contactadd0_.bmonth as bmonth6_0_, contactadd0_.byear as byear7_0_, contactadd0_.company as company8_0_, contactadd0_.email as email9_0_, contactadd0_.email2 as email10_0_, contactadd0_.email3 as email11_0_, contactadd0_.fax as fax12_0_, contactadd0_.firstName as firstna13_0_, contactadd0_.home as home14_0_, contactadd0_.homepage as homepag15_0_, contactadd0_.lastName as lastnam16_0_, contactadd0_.middleName as middlen17_0_, contactadd0_.mobile as mobile18_0_, contactadd0_.nickname as nicknam19_0_, contactadd0_.notes as notes20_0_, contactadd0_.phone2 as phone21_0_, contactadd0_.photo as photo22_0_, contactadd0_.title as title23_0_, contactadd0_.work as work24_0_ from addressbook contactadd0_
+22:41:26.214 [Test worker] INFO  r.s.pft.addressbook.tests.TestBase - Stop test testContactAddressBookCreation
+22:41:26.215 [Test worker] INFO  r.s.pft.addressbook.tests.TestBase - Start test testContactAddressBookCreation with parameters [ContactAddressBookRecordData{id=2147483647, firstName='First Name 1', lastName='Last Name 1'}]
+Hibernate: select contactadd0_.id as id1_0_, contactadd0_.address as address2_0_, contactadd0_.address2 as address3_0_, contactadd0_.amonth as amonth4_0_, contactadd0_.ayear as ayear5_0_, contactadd0_.bmonth as bmonth6_0_, contactadd0_.byear as byear7_0_, contactadd0_.company as company8_0_, contactadd0_.email as email9_0_, contactadd0_.email2 as email10_0_, contactadd0_.email3 as email11_0_, contactadd0_.fax as fax12_0_, contactadd0_.firstName as firstna13_0_, contactadd0_.home as home14_0_, contactadd0_.homepage as homepag15_0_, contactadd0_.lastName as lastnam16_0_, contactadd0_.middleName as middlen17_0_, contactadd0_.mobile as mobile18_0_, contactadd0_.nickname as nicknam19_0_, contactadd0_.notes as notes20_0_, contactadd0_.phone2 as phone21_0_, contactadd0_.photo as photo22_0_, contactadd0_.title as title23_0_, contactadd0_.work as work24_0_ from addressbook contactadd0_
+Hibernate: select contactadd0_.id as id1_0_, contactadd0_.address as address2_0_, contactadd0_.address2 as address3_0_, contactadd0_.amonth as amonth4_0_, contactadd0_.ayear as ayear5_0_, contactadd0_.bmonth as bmonth6_0_, contactadd0_.byear as byear7_0_, contactadd0_.company as company8_0_, contactadd0_.email as email9_0_, contactadd0_.email2 as email10_0_, contactadd0_.email3 as email11_0_, contactadd0_.fax as fax12_0_, contactadd0_.firstName as firstna13_0_, contactadd0_.home as home14_0_, contactadd0_.homepage as homepag15_0_, contactadd0_.lastName as lastnam16_0_, contactadd0_.middleName as middlen17_0_, contactadd0_.mobile as mobile18_0_, contactadd0_.nickname as nicknam19_0_, contactadd0_.notes as notes20_0_, contactadd0_.phone2 as phone21_0_, contactadd0_.photo as photo22_0_, contactadd0_.title as title23_0_, contactadd0_.work as work24_0_ from addressbook contactadd0_
+Hibernate: select contactadd0_.id as id1_0_, contactadd0_.address as address2_0_, contactadd0_.address2 as address3_0_, contactadd0_.amonth as amonth4_0_, contactadd0_.ayear as ayear5_0_, contactadd0_.bmonth as bmonth6_0_, contactadd0_.byear as byear7_0_, contactadd0_.company as company8_0_, contactadd0_.email as email9_0_, contactadd0_.email2 as email10_0_, contactadd0_.email3 as email11_0_, contactadd0_.fax as fax12_0_, contactadd0_.firstName as firstna13_0_, contactadd0_.home as home14_0_, contactadd0_.homepage as homepag15_0_, contactadd0_.lastName as lastnam16_0_, contactadd0_.middleName as middlen17_0_, contactadd0_.mobile as mobile18_0_, contactadd0_.nickname as nicknam19_0_, contactadd0_.notes as notes20_0_, contactadd0_.phone2 as phone21_0_, contactadd0_.photo as photo22_0_, contactadd0_.title as title23_0_, contactadd0_.work as work24_0_ from addressbook contactadd0_
+Hibernate: select contactadd0_.id as id1_0_, contactadd0_.address as address2_0_, contactadd0_.address2 as address3_0_, contactadd0_.amonth as amonth4_0_, contactadd0_.ayear as ayear5_0_, contactadd0_.bmonth as bmonth6_0_, contactadd0_.byear as byear7_0_, contactadd0_.company as company8_0_, contactadd0_.email as email9_0_, contactadd0_.email2 as email10_0_, contactadd0_.email3 as email11_0_, contactadd0_.fax as fax12_0_, contactadd0_.firstName as firstna13_0_, contactadd0_.home as home14_0_, contactadd0_.homepage as homepag15_0_, contactadd0_.lastName as lastnam16_0_, contactadd0_.middleName as middlen17_0_, contactadd0_.mobile as mobile18_0_, contactadd0_.nickname as nicknam19_0_, contactadd0_.notes as notes20_0_, contactadd0_.phone2 as phone21_0_, contactadd0_.photo as photo22_0_, contactadd0_.title as title23_0_, contactadd0_.work as work24_0_ from addressbook contactadd0_
+22:41:33.829 [Test worker] INFO  r.s.pft.addressbook.tests.TestBase - Stop test testContactAddressBookCreation
+22:41:33.830 [Test worker] INFO  r.s.pft.addressbook.tests.TestBase - Start test testContactAddressBookCreation with parameters [ContactAddressBookRecordData{id=2147483647, firstName='First Name 2', lastName='Last Name 2'}]
+Hibernate: select contactadd0_.id as id1_0_, contactadd0_.address as address2_0_, contactadd0_.address2 as address3_0_, contactadd0_.amonth as amonth4_0_, contactadd0_.ayear as ayear5_0_, contactadd0_.bmonth as bmonth6_0_, contactadd0_.byear as byear7_0_, contactadd0_.company as company8_0_, contactadd0_.email as email9_0_, contactadd0_.email2 as email10_0_, contactadd0_.email3 as email11_0_, contactadd0_.fax as fax12_0_, contactadd0_.firstName as firstna13_0_, contactadd0_.home as home14_0_, contactadd0_.homepage as homepag15_0_, contactadd0_.lastName as lastnam16_0_, contactadd0_.middleName as middlen17_0_, contactadd0_.mobile as mobile18_0_, contactadd0_.nickname as nicknam19_0_, contactadd0_.notes as notes20_0_, contactadd0_.phone2 as phone21_0_, contactadd0_.photo as photo22_0_, contactadd0_.title as title23_0_, contactadd0_.work as work24_0_ from addressbook contactadd0_
+Hibernate: select contactadd0_.id as id1_0_, contactadd0_.address as address2_0_, contactadd0_.address2 as address3_0_, contactadd0_.amonth as amonth4_0_, contactadd0_.ayear as ayear5_0_, contactadd0_.bmonth as bmonth6_0_, contactadd0_.byear as byear7_0_, contactadd0_.company as company8_0_, contactadd0_.email as email9_0_, contactadd0_.email2 as email10_0_, contactadd0_.email3 as email11_0_, contactadd0_.fax as fax12_0_, contactadd0_.firstName as firstna13_0_, contactadd0_.home as home14_0_, contactadd0_.homepage as homepag15_0_, contactadd0_.lastName as lastnam16_0_, contactadd0_.middleName as middlen17_0_, contactadd0_.mobile as mobile18_0_, contactadd0_.nickname as nicknam19_0_, contactadd0_.notes as notes20_0_, contactadd0_.phone2 as phone21_0_, contactadd0_.photo as photo22_0_, contactadd0_.title as title23_0_, contactadd0_.work as work24_0_ from addressbook contactadd0_
+Hibernate: select contactadd0_.id as id1_0_, contactadd0_.address as address2_0_, contactadd0_.address2 as address3_0_, contactadd0_.amonth as amonth4_0_, contactadd0_.ayear as ayear5_0_, contactadd0_.bmonth as bmonth6_0_, contactadd0_.byear as byear7_0_, contactadd0_.company as company8_0_, contactadd0_.email as email9_0_, contactadd0_.email2 as email10_0_, contactadd0_.email3 as email11_0_, contactadd0_.fax as fax12_0_, contactadd0_.firstName as firstna13_0_, contactadd0_.home as home14_0_, contactadd0_.homepage as homepag15_0_, contactadd0_.lastName as lastnam16_0_, contactadd0_.middleName as middlen17_0_, contactadd0_.mobile as mobile18_0_, contactadd0_.nickname as nicknam19_0_, contactadd0_.notes as notes20_0_, contactadd0_.phone2 as phone21_0_, contactadd0_.photo as photo22_0_, contactadd0_.title as title23_0_, contactadd0_.work as work24_0_ from addressbook contactadd0_
+Hibernate: select contactadd0_.id as id1_0_, contactadd0_.address as address2_0_, contactadd0_.address2 as address3_0_, contactadd0_.amonth as amonth4_0_, contactadd0_.ayear as ayear5_0_, contactadd0_.bmonth as bmonth6_0_, contactadd0_.byear as byear7_0_, contactadd0_.company as company8_0_, contactadd0_.email as email9_0_, contactadd0_.email2 as email10_0_, contactadd0_.email3 as email11_0_, contactadd0_.fax as fax12_0_, contactadd0_.firstName as firstna13_0_, contactadd0_.home as home14_0_, contactadd0_.homepage as homepag15_0_, contactadd0_.lastName as lastnam16_0_, contactadd0_.middleName as middlen17_0_, contactadd0_.mobile as mobile18_0_, contactadd0_.nickname as nicknam19_0_, contactadd0_.notes as notes20_0_, contactadd0_.phone2 as phone21_0_, contactadd0_.photo as photo22_0_, contactadd0_.title as title23_0_, contactadd0_.work as work24_0_ from addressbook contactadd0_
+22:41:41.088 [Test worker] INFO  r.s.pft.addressbook.tests.TestBase - Stop test testContactAddressBookCreation
+22:41:41.089 [Test worker] INFO  r.s.pft.addressbook.tests.TestBase - Start test testContactBadAddressBookCreation with parameters []
+Hibernate: select contactadd0_.id as id1_0_, contactadd0_.address as address2_0_, contactadd0_.address2 as address3_0_, contactadd0_.amonth as amonth4_0_, contactadd0_.ayear as ayear5_0_, contactadd0_.bmonth as bmonth6_0_, contactadd0_.byear as byear7_0_, contactadd0_.company as company8_0_, contactadd0_.email as email9_0_, contactadd0_.email2 as email10_0_, contactadd0_.email3 as email11_0_, contactadd0_.fax as fax12_0_, contactadd0_.firstName as firstna13_0_, contactadd0_.home as home14_0_, contactadd0_.homepage as homepag15_0_, contactadd0_.lastName as lastnam16_0_, contactadd0_.middleName as middlen17_0_, contactadd0_.mobile as mobile18_0_, contactadd0_.nickname as nicknam19_0_, contactadd0_.notes as notes20_0_, contactadd0_.phone2 as phone21_0_, contactadd0_.photo as photo22_0_, contactadd0_.title as title23_0_, contactadd0_.work as work24_0_ from addressbook contactadd0_
+Hibernate: select contactadd0_.id as id1_0_, contactadd0_.address as address2_0_, contactadd0_.address2 as address3_0_, contactadd0_.amonth as amonth4_0_, contactadd0_.ayear as ayear5_0_, contactadd0_.bmonth as bmonth6_0_, contactadd0_.byear as byear7_0_, contactadd0_.company as company8_0_, contactadd0_.email as email9_0_, contactadd0_.email2 as email10_0_, contactadd0_.email3 as email11_0_, contactadd0_.fax as fax12_0_, contactadd0_.firstName as firstna13_0_, contactadd0_.home as home14_0_, contactadd0_.homepage as homepag15_0_, contactadd0_.lastName as lastnam16_0_, contactadd0_.middleName as middlen17_0_, contactadd0_.mobile as mobile18_0_, contactadd0_.nickname as nicknam19_0_, contactadd0_.notes as notes20_0_, contactadd0_.phone2 as phone21_0_, contactadd0_.photo as photo22_0_, contactadd0_.title as title23_0_, contactadd0_.work as work24_0_ from addressbook contactadd0_
+Hibernate: select contactadd0_.id as id1_0_, contactadd0_.address as address2_0_, contactadd0_.address2 as address3_0_, contactadd0_.amonth as amonth4_0_, contactadd0_.ayear as ayear5_0_, contactadd0_.bmonth as bmonth6_0_, contactadd0_.byear as byear7_0_, contactadd0_.company as company8_0_, contactadd0_.email as email9_0_, contactadd0_.email2 as email10_0_, contactadd0_.email3 as email11_0_, contactadd0_.fax as fax12_0_, contactadd0_.firstName as firstna13_0_, contactadd0_.home as home14_0_, contactadd0_.homepage as homepag15_0_, contactadd0_.lastName as lastnam16_0_, contactadd0_.middleName as middlen17_0_, contactadd0_.mobile as mobile18_0_, contactadd0_.nickname as nicknam19_0_, contactadd0_.notes as notes20_0_, contactadd0_.phone2 as phone21_0_, contactadd0_.photo as photo22_0_, contactadd0_.title as title23_0_, contactadd0_.work as work24_0_ from addressbook contactadd0_
+Hibernate: select contactadd0_.id as id1_0_, contactadd0_.address as address2_0_, contactadd0_.address2 as address3_0_, contactadd0_.amonth as amonth4_0_, contactadd0_.ayear as ayear5_0_, contactadd0_.bmonth as bmonth6_0_, contactadd0_.byear as byear7_0_, contactadd0_.company as company8_0_, contactadd0_.email as email9_0_, contactadd0_.email2 as email10_0_, contactadd0_.email3 as email11_0_, contactadd0_.fax as fax12_0_, contactadd0_.firstName as firstna13_0_, contactadd0_.home as home14_0_, contactadd0_.homepage as homepag15_0_, contactadd0_.lastName as lastnam16_0_, contactadd0_.middleName as middlen17_0_, contactadd0_.mobile as mobile18_0_, contactadd0_.nickname as nicknam19_0_, contactadd0_.notes as notes20_0_, contactadd0_.phone2 as phone21_0_, contactadd0_.photo as photo22_0_, contactadd0_.title as title23_0_, contactadd0_.work as work24_0_ from addressbook contactadd0_
+22:41:47.965 [Test worker] INFO  r.s.pft.addressbook.tests.TestBase - Stop test testContactBadAddressBookCreation
+</pre>
+</span>
 </div>
 </div>
 <div id="footer">
@@ -99,7 +137,7 @@
 <input id="line-wrapping-toggle" type="checkbox" autocomplete="off"/>
 </label>
 </div>Generated by 
-<a href="http://www.gradle.org">Gradle 6.6</a> at Sep 30, 2020 8:12:04 PM</p>
+<a href="http://www.gradle.org">Gradle 6.6</a> at Oct 4, 2020 10:41:59 PM</p>
 </div>
 </div>
 </body>

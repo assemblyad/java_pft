@@ -40,6 +40,7 @@ public class ContactAddressBookModificationTests extends TestBase {
     Assert.assertEquals(after.size(),before.size());
     assertThat(after, equalTo(
             before.withOut(modifiedContact).withAdded(contact)));
+    verifyContactListInUI();
   }
 
 }

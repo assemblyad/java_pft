@@ -98,6 +98,7 @@ public class ContactAddressBookCreationTests extends TestBase {
 
     assertThat(after, equalTo(
             before.withAdded(contact.withId(after.stream().mapToInt((c)->c.getId()).max().getAsInt()))));
+    verifyContactListInUI();
   }
   @Test(enabled = true)
   public void testContactBadAddressBookCreation() throws Exception {
@@ -115,6 +116,7 @@ public class ContactAddressBookCreationTests extends TestBase {
 //    Assert.assertEquals(new HashSet<>(before), new HashSet<>(after));
 
     assertThat(after, equalTo(before));
+    verifyContactListInUI();
   }
 
   @Test(enabled = false)
