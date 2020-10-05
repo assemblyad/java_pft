@@ -75,7 +75,8 @@ public class ContactAddressBookCreationTests extends TestBase {
   @Test(enabled = true, dataProvider = "validContactAddressBookRecordsFromJson")
   public void testContactAddressBookCreation(ContactAddressBookRecordData contact) throws Exception {
     app.contact().gotoHome();
-    ContactAddressBookRecords before = app.contact().all();
+    ContactAddressBookRecords before = app.db().contacts();
+//    ContactAddressBookRecords before = app.contact().all();
 //    File photo= new File("src/test/resources/stru.png"); //Лекция 6.1. Пути к файлам и директориям
 /*
     ContactAddressBookRecordData contact = new ContactAddressBookRecordData()
@@ -87,8 +88,10 @@ public class ContactAddressBookCreationTests extends TestBase {
             .withAyear("1980").withPhoto(photo);
  */
     app.contact().create(contact,true);
-    assertThat(app.contact().count(), equalTo(before.size()+1));
-    ContactAddressBookRecords after = app.contact().all();
+//    assertThat(app.contact().count(), equalTo(before.size()+1));
+    assertThat(app.db().contacts().size(), equalTo(before.size()+1));
+    ContactAddressBookRecords after = app.db().contacts();
+//    ContactAddressBookRecords after = app.contact().all();
 //    contact.withId(after.stream().max((o1, o2) -> Integer.compare(o1.getId(), o2.getId())).get().getId());
 //    before.add(contact);
 //    Assert.assertEquals(new HashSet<>(before), new HashSet<>(after));
@@ -96,14 +99,17 @@ public class ContactAddressBookCreationTests extends TestBase {
     assertThat(after, equalTo(
             before.withAdded(contact.withId(after.stream().mapToInt((c)->c.getId()).max().getAsInt()))));
   }
-  @Test(enabled = false)
+  @Test(enabled = true)
   public void testContactBadAddressBookCreation() throws Exception {
     app.contact().gotoHome();
-    ContactAddressBookRecords before = app.contact().all();
+//    ContactAddressBookRecords before = app.contact().all();
+    ContactAddressBookRecords before = app.db().contacts();
     ContactAddressBookRecordData contactAddressBookRecordData = new ContactAddressBookRecordData().withFirstName("First_name_03'").withMiddleName("Middle_name").withLastName("Last_name_03").withNickname("Nickname").withTitle("Title").withCompany("Company").withAddress("Address").withHomePhone("Home").withMobilePhone("Mobile").withWorkPhone("Work").withFax("Fax").withEmail("E-mail").withEmail2("E-mail2").withEmail3("E-mail3").withHomepage("Homepage").withGroupName("Group name").withAddress2("Greenwood Village").withHome1("Home").withNotes("Notes").withBday("5").withBmonth("April").withByear("1975").withAday("5").withAmonth("April").withAyear("1980");
     app.contact().create(contactAddressBookRecordData,true);
-    assertThat(app.contact().count(), equalTo(before.size())); //Лекция 5.8. Хеширование и предварительные проверки
-    ContactAddressBookRecords after = app.contact().all();
+//    assertThat(app.contact().count(), equalTo(before.size())); //Лекция 5.8. Хеширование и предварительные проверки
+    assertThat(app.db().contacts().size(), equalTo(before.size())); //Лекция 5.8. Хеширование и предварительные проверки
+//    ContactAddressBookRecords after = app.contact().all();
+    ContactAddressBookRecords after = app.db().contacts();
 //    contactAddressBookRecordData.withId(after.stream().max((o1, o2) -> Integer.compare(o1.getId(), o2.getId())).get().getId());
 //    before.add(contactAddressBookRecordData);
 //    Assert.assertEquals(new HashSet<>(before), new HashSet<>(after));

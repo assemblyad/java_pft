@@ -109,7 +109,7 @@ public class ContactAddressBookRecordDataGenerator {
                 , contactAddressBookRecord.getHomepage()
                 , contactAddressBookRecord.getGroupName()
                 , contactAddressBookRecord.getAddress2()
-                , contactAddressBookRecord.getHome1()
+                , contactAddressBookRecord.getPhone2()
                 , contactAddressBookRecord.getNotes()
                 , contactAddressBookRecord.getBday()
                 , contactAddressBookRecord.getBmonth()

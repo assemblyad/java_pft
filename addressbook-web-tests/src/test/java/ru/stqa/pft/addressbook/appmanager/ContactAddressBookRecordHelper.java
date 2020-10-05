@@ -3,7 +3,6 @@ package ru.stqa.pft.addressbook.appmanager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import ru.stqa.pft.addressbook.model.ContactAddressBookRecordData;
 import ru.stqa.pft.addressbook.model.ContactAddressBookRecords;
@@ -55,7 +54,7 @@ public class ContactAddressBookRecordHelper extends HelperBase{
         Assert.assertFalse(isElementPresent(By.name("new_group")));
       }
       type(By.name("address2"),addressBookRecord.getAddress2());
-      type(By.name("phone2"),addressBookRecord.getHome1());
+      type(By.name("phone2"),addressBookRecord.getPhone2());
       type(By.name("notes"),addressBookRecord.getNotes());
     }
 

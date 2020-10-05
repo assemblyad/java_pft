@@ -3,20 +3,28 @@ package ru.stqa.pft.addressbook.model;
 import com.google.gson.annotations.Expose;
 import com.thoughtworks.xstream.annotations.XStreamAlias;
 import com.thoughtworks.xstream.annotations.XStreamOmitField;
+import org.hibernate.annotations.Type;
 
+import javax.persistence.*;
 import java.io.File;
+import java.util.List;
 import java.util.Objects;
 
-
+@Entity
+@Table(name= "addressbook")
 @XStreamAlias("ContactAddressBookRecordData")
 public class ContactAddressBookRecordData {
   @XStreamOmitField
+  @Id
+  @Column(name="id")
   private int id =Integer.MAX_VALUE;
   @Expose
+  @Column(name="firstName")
   private  String firstName;
   @Expose
   private  String middleName;
   @Expose
+  @Column(name="lastName")
   private  String lastName;
   @Expose
   private  String nickname;
@@ -25,56 +33,81 @@ public class ContactAddressBookRecordData {
   @Expose
   private  String company;
   @Expose
+  @Type(type="text")
   private  String address;
   @Expose
+  @Column(name="home")
+  @Type(type="text")
   private  String home;
   @Expose
+  @Type(type="text")
+  @Column(name="mobile")
   private  String mobile;
   @Expose
+  @Column(name="work")
+  @Type(type="text")
   private  String work;
   @Expose
+  @Type(type="text")
   private  String fax;
   @Expose
+  @Type(type="text")
   private  String email;
   @Expose
+  @Type(type="text")
   private  String email2;
   @Expose
+  @Type(type="text")
   private  String email3;
   @Expose
+  @Type(type="text")
   private  String homepage;
   @Expose
+  @Transient
   private  String groupName;
   @Expose
+  @Type(type="text")
   private  String address2;
   @Expose
-  private  String home1;
+  @Type(type="text")
+  private  String phone2;
   @Expose
+  @Type(type="text")
   private  String notes;
   @Expose
+  @Transient
+//  @Type(type="tinyint")
   private  String bday;
   @Expose
   private  String bmonth;
   @Expose
   private  String byear;
   @Expose
+  @Transient
   private  String aday;
   @Expose
   private  String amonth;
   @Expose
   private  String ayear;
   @Expose
+  @Transient
   private String allPhones;
   @Expose
+  @Transient
   private String allEmails;
   @Expose
-  private File photo;
+  @Column(name="photo")
+  @Type(type="text")
+  private String photo;
+//  private File photo;
 
   public File getPhoto() {
-    return photo;
+    if (photo!=null) {    return new File(photo);}
+    else return null;
   }
 
   public ContactAddressBookRecordData withPhoto(File photo) {
-    this.photo = photo;
+    this.photo = photo.getPath();
     return this;
   }
 
@@ -183,8 +216,8 @@ public class ContactAddressBookRecordData {
     return address2;
   }
 
-  public String getHome1() {
-    return home1;
+  public String getPhone2() {
+    return phone2;
   }
 
   public String getNotes() {
@@ -213,21 +246,6 @@ public class ContactAddressBookRecordData {
 
   public String getAyear() {
     return ayear;
-  }
-
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) return true;
-    if (o == null || getClass() != o.getClass()) return false;
-    ContactAddressBookRecordData that = (ContactAddressBookRecordData) o;
-    return id == that.id &&
-            Objects.equals(firstName, that.firstName) &&
-            Objects.equals(lastName, that.lastName);
-  }
-
-  @Override
-  public int hashCode() {
-    return Objects.hash(id, firstName, lastName);
   }
 
   public ContactAddressBookRecordData withId(int id) {
@@ -329,7 +347,7 @@ public class ContactAddressBookRecordData {
   }
 
   public ContactAddressBookRecordData withHome1(String home1) {
-    this.home1 = home1;
+    this.phone2 = home1;
     return this;
   }
 
@@ -371,26 +389,25 @@ public class ContactAddressBookRecordData {
   @Override
   public String toString() {
     return "ContactAddressBookRecordData{" +
-            "firstName='" + firstName + '\'' +
+            "id=" + id +
+            ", firstName='" + firstName + '\'' +
             ", lastName='" + lastName + '\'' +
             '}';
   }
-/*
+
   @Override
   public boolean equals(Object o) {
     if (this == o) return true;
     if (o == null || getClass() != o.getClass()) return false;
     ContactAddressBookRecordData that = (ContactAddressBookRecordData) o;
-    return Objects.equals(firstName, that.firstName) &&
+    return id == that.id &&
+            Objects.equals(firstName, that.firstName) &&
+            Objects.equals(middleName, that.middleName) &&
             Objects.equals(lastName, that.lastName);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(firstName, lastName);
+    return Objects.hash(id, firstName, middleName, lastName);
   }
-*/
-
-
-
 }

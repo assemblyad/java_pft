@@ -15,7 +15,8 @@ public class ContactAddressBookModificationTests extends TestBase {
   public void ensurePreconditions(){
     app.contact().gotoHome();
     //please check here validation for contact address book presence.
-    if(app.contact().all().size()==0){
+    //if(app.contact().all().size()==0){
+    if(app.db().contacts().size()==0){
       app.contact().create(new ContactAddressBookRecordData().withFirstName("First name").withMiddleName("Middle_name").withLastName("Last_name").withNickname("Nickname").withTitle("Title").withCompany("Company").withAddress("Address").withHomePhone("Home").withMobilePhone("Mobile").withWorkPhone("Work").withFax("Fax").withEmail("E-mail").withEmail2("E-mail2").withEmail3("E-mail3").withHomepage("Homepage").withGroupName("Group name").withAddress2("Greenwood Village").withHome1("Home").withNotes("Notes").withBday("5").withBmonth("April").withByear("1975").withAday("5").withAmonth("April").withAyear("1980"),true);
     }
   }
@@ -25,18 +26,20 @@ public class ContactAddressBookModificationTests extends TestBase {
   public void testContactAddressBookModification() {
 
 //    int before = app.getContactAddressBookRecordHelper().getContactAddressBookRecordCount();
-    ContactAddressBookRecords before = app.contact().all();
+//    ContactAddressBookRecords before = app.contact().all();
+    ContactAddressBookRecords before = app.db().contacts();
     ContactAddressBookRecordData modifiedContact = before.iterator().next();
     ContactAddressBookRecordData contact = new ContactAddressBookRecordData()
             .withId(modifiedContact.getId()).withFirstName("First name8").withMiddleName("Middle_name").withLastName("Last_name8").withNickname("Nickname").withTitle("Title").withCompany("Company").withAddress("Address").withHomePhone("Home").withMobilePhone("Mobile").withWorkPhone("Work").withFax("Fax").withEmail("E-mail").withEmail2("E-mail2").withEmail3("E-mail3").withHomepage("Homepage").withGroupName("Group name").withAddress2("Greenwood Village").withHome1("Home").withNotes("Notes").withBday("5").withBmonth("April").withByear("1975").withAday("5").withAmonth("April").withAyear("1980");
     app.contact().modify(contact);
-    assertThat(app.group().count(),equalTo(before.size())); //Лекция 5.8. Хеширование и предварительные проверки
+//    assertThat(app.contact().count(),equalTo(before.size())); //Лекция 5.8. Хеширование и предварительные проверки
+    assertThat(app.db().contacts().size(),equalTo(before.size())); //Лекция 5.8. Хеширование и предварительные проверки
 //    int after = app.getContactAddressBookRecordHelper().getContactAddressBookRecordCount();
-    ContactAddressBookRecords after = app.contact().all();
+//    ContactAddressBookRecords after = app.contact().all();
+    ContactAddressBookRecords after = app.db().contacts();
     Assert.assertEquals(after.size(),before.size());
     assertThat(after, equalTo(
             before.withOut(modifiedContact).withAdded(contact)));
   }
-
 
 }
