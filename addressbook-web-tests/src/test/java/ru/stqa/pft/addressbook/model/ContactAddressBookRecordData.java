@@ -3,12 +3,16 @@ package ru.stqa.pft.addressbook.model;
 import com.google.gson.annotations.Expose;
 import com.thoughtworks.xstream.annotations.XStreamAlias;
 import com.thoughtworks.xstream.annotations.XStreamOmitField;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.ManyToAny;
 import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
 import java.io.File;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 
 @Entity
 @Table(name= "addressbook")
@@ -62,9 +66,9 @@ public class ContactAddressBookRecordData {
   @Expose
   @Type(type="text")
   private  String homepage;
-  @Expose
-  @Transient
-  private  String groupName;
+//  @Expose
+//  @Transient
+//  private  String groupName;
   @Expose
   @Type(type="text")
   private  String address2;
@@ -101,6 +105,21 @@ public class ContactAddressBookRecordData {
   private String photo;
 //  private File photo;
 
+
+  @ManyToMany(fetch= FetchType.EAGER)
+  @JoinTable(name="address_in_groups",joinColumns = @JoinColumn(name="id")
+                                     ,inverseJoinColumns =@JoinColumn(name="group_id"))
+  private Set<GroupData> groups = new HashSet<GroupData>();
+
+  public Groups getGroups() {
+    return new Groups(groups);
+  }
+
+  public ContactAddressBookRecordData inGroup(GroupData group) {
+    groups.add(group);
+    return this;
+  }
+
   public File getPhoto() {
     if (photo!=null) {    return new File(photo);}
     else return null;
@@ -111,38 +130,40 @@ public class ContactAddressBookRecordData {
     return this;
   }
 
+
+
   /*
-      public  ContactAddressBookRecordData() {
-      }
-      public ContactAddressBookRecordData(ContactAddressBookRecordData contactData) {
-        this.id =contactData.getId();
-        this.firstName=contactData.firstName;
-        this.middleName=contactData.middleName;
-        this.lastName=contactData.lastName;
-        this.nickname=contactData.nickname;
-        this.title=contactData.title;
-        this.company=contactData.company;
-        this.address=contactData.address;
-        this.home=contactData.home;
-        this.mobile=contactData.mobile;
-        this.work=contactData.work;
-        this.fax=contactData.fax;
-        this.email=contactData.email;
-        this.email2=contactData.email2;
-        this.email3=contactData.email3;
-        this.homepage=contactData.homepage;
-        this.groupName=contactData.groupName;
-        this.address2=contactData.address2;
-        this.home1=contactData.home1;
-        this.notes=contactData.notes;
-        this.bday=contactData.bday;
-        this.bmonth=contactData.bmonth;
-        this.byear=contactData.byear;
-        this.aday=contactData.aday;
-        this.amonth=contactData.amonth;
-        this.ayear=contactData.ayear;
-      }
-    */
+        public  ContactAddressBookRecordData() {
+        }
+        public ContactAddressBookRecordData(ContactAddressBookRecordData contactData) {
+          this.id =contactData.getId();
+          this.firstName=contactData.firstName;
+          this.middleName=contactData.middleName;
+          this.lastName=contactData.lastName;
+          this.nickname=contactData.nickname;
+          this.title=contactData.title;
+          this.company=contactData.company;
+          this.address=contactData.address;
+          this.home=contactData.home;
+          this.mobile=contactData.mobile;
+          this.work=contactData.work;
+          this.fax=contactData.fax;
+          this.email=contactData.email;
+          this.email2=contactData.email2;
+          this.email3=contactData.email3;
+          this.homepage=contactData.homepage;
+          this.groupName=contactData.groupName;
+          this.address2=contactData.address2;
+          this.home1=contactData.home1;
+          this.notes=contactData.notes;
+          this.bday=contactData.bday;
+          this.bmonth=contactData.bmonth;
+          this.byear=contactData.byear;
+          this.aday=contactData.aday;
+          this.amonth=contactData.amonth;
+          this.ayear=contactData.ayear;
+        }
+      */
   public int getId() {
   return id;
 }
@@ -207,11 +228,11 @@ public class ContactAddressBookRecordData {
   public String getHomepage() {
     return homepage;
   }
-
+/*
   public String getGroupName() {
     return groupName;
   }
-
+*/
   public String getAddress2() {
     return address2;
   }
@@ -335,12 +356,12 @@ public class ContactAddressBookRecordData {
     this.homepage = homepage;
     return this;
   }
-
+/*
   public ContactAddressBookRecordData withGroupName(String groupName) {
     this.groupName = groupName;
     return this;
   }
-
+*/
   public ContactAddressBookRecordData withAddress2(String address2) {
     this.address2 = address2;
     return this;
@@ -410,4 +431,5 @@ public class ContactAddressBookRecordData {
   public int hashCode() {
     return Objects.hash(id, firstName, middleName, lastName);
   }
+
 }

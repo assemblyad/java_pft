@@ -107,7 +107,7 @@ public class ContactAddressBookRecordDataGenerator {
                 , contactAddressBookRecord.getEmail2()
                 , contactAddressBookRecord.getEmail3()
                 , contactAddressBookRecord.getHomepage()
-                , contactAddressBookRecord.getGroupName()
+//                , contactAddressBookRecord.getGroupName()
                 , contactAddressBookRecord.getAddress2()
                 , contactAddressBookRecord.getPhone2()
                 , contactAddressBookRecord.getNotes()

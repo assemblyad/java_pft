@@ -49,7 +49,10 @@ public class ContactAddressBookRecordHelper extends HelperBase{
       attach(By.name("photo"), addressBookRecord.getPhoto());
 
       if(creation){
-        select(By.name("new_group"), addressBookRecord.getGroupName());
+        if(addressBookRecord.getGroups().size()>0) {
+          Assert.assertTrue(addressBookRecord.getGroups().size()==1);
+        select(By.name("new_group"), addressBookRecord.getGroups().iterator().next().getName());
+        }
       } else {
         Assert.assertFalse(isElementPresent(By.name("new_group")));
       }
@@ -130,6 +133,19 @@ public class ContactAddressBookRecordHelper extends HelperBase{
     contactAddressBookRecord = null; //Лекция 5.7. Кеширование результатов длительных операций
     gotoHome();
   }
+
+  public void addToGroup(int id, String groupName) {
+    selectContactById(id);
+    select(By.name("to_group"),groupName);
+
+//    app.getContactAddressBookRecordHelper().initContactAddressRecordsModification();
+//    initContactAddressRecordsModification(contact.getId());
+//    fillContactAddressBookRecord(contact,false);
+    submitContactAddressRecordsModification();
+    contactAddressBookRecord = null; //Лекция 5.7. Кеширование результатов длительных операций
+    gotoHome();
+  }
+
   public ContactAddressBookRecordData infoFromEditForm(ContactAddressBookRecordData contact) {
     selectContactById(contact.getId());
     initContactAddressRecordsModification(contact.getId());

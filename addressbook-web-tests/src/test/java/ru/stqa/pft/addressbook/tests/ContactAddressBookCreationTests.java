@@ -3,10 +3,13 @@ package ru.stqa.pft.addressbook.tests;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.thoughtworks.xstream.XStream;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.ContactAddressBookRecordData;
 import ru.stqa.pft.addressbook.model.ContactAddressBookRecords;
+import ru.stqa.pft.addressbook.model.GroupData;
+import ru.stqa.pft.addressbook.model.Groups;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -72,8 +75,19 @@ public class ContactAddressBookCreationTests extends TestBase {
 //    return list.iterator();
   }
 
+  @BeforeMethod
+  public void ensurePreconditions() {
+    //app.goTo().groupPage();
+    //please check here validation for group presence
+//    if(app.group().all().size()==0){
+    if(app.db().groups().size()==0){
+      app.group().create(new GroupData().withName("Group name").withHeader("Header").withFooter("Footer"));
+    }
+  }
+
   @Test(enabled = true, dataProvider = "validContactAddressBookRecordsFromJson")
   public void testContactAddressBookCreation(ContactAddressBookRecordData contact) throws Exception {
+    Groups groups = app.db().groups();
     app.contact().gotoHome();
     ContactAddressBookRecords before = app.db().contacts();
 //    ContactAddressBookRecords before = app.contact().all();
@@ -87,7 +101,7 @@ public class ContactAddressBookCreationTests extends TestBase {
             .withNotes("Notes").withBday("5").withBmonth("April").withByear("1975").withAday("5").withAmonth("April")
             .withAyear("1980").withPhoto(photo);
  */
-    app.contact().create(contact,true);
+    app.contact().create( contact.inGroup(groups.iterator().next()),true);
 //    assertThat(app.contact().count(), equalTo(before.size()+1));
     assertThat(app.db().contacts().size(), equalTo(before.size()+1));
     ContactAddressBookRecords after = app.db().contacts();
@@ -100,12 +114,14 @@ public class ContactAddressBookCreationTests extends TestBase {
             before.withAdded(contact.withId(after.stream().mapToInt((c)->c.getId()).max().getAsInt()))));
     verifyContactListInUI();
   }
-  @Test(enabled = true)
+  @Test(enabled = false)
   public void testContactBadAddressBookCreation() throws Exception {
     app.contact().gotoHome();
 //    ContactAddressBookRecords before = app.contact().all();
     ContactAddressBookRecords before = app.db().contacts();
-    ContactAddressBookRecordData contactAddressBookRecordData = new ContactAddressBookRecordData().withFirstName("First_name_03'").withMiddleName("Middle_name").withLastName("Last_name_03").withNickname("Nickname").withTitle("Title").withCompany("Company").withAddress("Address").withHomePhone("Home").withMobilePhone("Mobile").withWorkPhone("Work").withFax("Fax").withEmail("E-mail").withEmail2("E-mail2").withEmail3("E-mail3").withHomepage("Homepage").withGroupName("Group name").withAddress2("Greenwood Village").withHome1("Home").withNotes("Notes").withBday("5").withBmonth("April").withByear("1975").withAday("5").withAmonth("April").withAyear("1980");
+    ContactAddressBookRecordData contactAddressBookRecordData = new ContactAddressBookRecordData().withFirstName("First_name_03'").withMiddleName("Middle_name").withLastName("Last_name_03").withNickname("Nickname").withTitle("Title").withCompany("Company").withAddress("Address").withHomePhone("Home").withMobilePhone("Mobile").withWorkPhone("Work").withFax("Fax").withEmail("E-mail").withEmail2("E-mail2").withEmail3("E-mail3").withHomepage("Homepage")
+//            .withGroupName("Group name")
+            .withAddress2("Greenwood Village").withHome1("Home").withNotes("Notes").withBday("5").withBmonth("April").withByear("1975").withAday("5").withAmonth("April").withAyear("1980");
     app.contact().create(contactAddressBookRecordData,true);
 //    assertThat(app.contact().count(), equalTo(before.size())); //Лекция 5.8. Хеширование и предварительные проверки
     assertThat(app.db().contacts().size(), equalTo(before.size())); //Лекция 5.8. Хеширование и предварительные проверки
