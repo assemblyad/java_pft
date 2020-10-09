@@ -33,6 +33,10 @@ public class GroupData {
   @ManyToMany(mappedBy = "groups")
   private Set<ContactAddressBookRecordData> contacts = new HashSet<ContactAddressBookRecordData>();
 
+  //New added
+  @ManyToMany(mappedBy = "contactGroups")
+  private Set<AddressInGroupsData> addressRecordsIGroups = new HashSet<AddressInGroupsData>();
+
   public ContactAddressBookRecords getContacts() {
     return new ContactAddressBookRecords(contacts);
   }

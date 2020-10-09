@@ -356,12 +356,13 @@ public class ContactAddressBookRecordData {
     this.homepage = homepage;
     return this;
   }
-/*
-  public ContactAddressBookRecordData withGroupName(String groupName) {
-    this.groupName = groupName;
+
+  public ContactAddressBookRecordData withAddedGroup(GroupData group) {
+    this.groups.add(group);
     return this;
   }
-*/
+
+
   public ContactAddressBookRecordData withAddress2(String address2) {
     this.address2 = address2;
     return this;

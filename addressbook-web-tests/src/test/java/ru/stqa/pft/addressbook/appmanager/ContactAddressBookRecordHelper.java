@@ -6,6 +6,8 @@ import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import ru.stqa.pft.addressbook.model.ContactAddressBookRecordData;
 import ru.stqa.pft.addressbook.model.ContactAddressBookRecords;
+import ru.stqa.pft.addressbook.model.GroupData;
+import ru.stqa.pft.addressbook.model.Groups;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -134,17 +136,44 @@ public class ContactAddressBookRecordHelper extends HelperBase{
     gotoHome();
   }
 
-  public void addToGroup(int id, String groupName) {
+  public void addToGroup(int id, int groupId) {
+    gotoHome();
     selectContactById(id);
-    select(By.name("to_group"),groupName);
-
-//    app.getContactAddressBookRecordHelper().initContactAddressRecordsModification();
-//    initContactAddressRecordsModification(contact.getId());
-//    fillContactAddressBookRecord(contact,false);
-    submitContactAddressRecordsModification();
-    contactAddressBookRecord = null; //Лекция 5.7. Кеширование результатов длительных операций
+    click(By.xpath("//select[@name='to_group']//option[@value='"+groupId+"']"));
+    click(By.name("add"));
     gotoHome();
   }
+
+  public GroupData addContactToGroup(ContactAddressBookRecordData contactAddedToGroup, Groups groupsInDB) {
+    for (GroupData groupInDB: groupsInDB){
+      if (!contactAddedToGroup.getGroups().contains(groupInDB)) {
+        addToGroup(contactAddedToGroup.getId(), groupInDB.getId());
+        return groupInDB;
+      }
+    }
+    return null;
+  }
+
+  public GroupData deleteContactFromGroup(ContactAddressBookRecordData contactAddedToGroup, Groups groupsInDB) {
+    for (GroupData groupInDB: groupsInDB){
+      if (contactAddedToGroup.getGroups().contains(groupInDB)) {
+        deleteFromGroup(contactAddedToGroup.getId(), groupInDB.getId());
+        return groupInDB;
+      }
+    }
+    return null;
+  }
+
+  public void deleteFromGroup(int id, int groupID) {
+    gotoHome();
+    click(By.xpath("//select[@name='group']//option[@value='"+groupID+"']"));
+    selectContactById(id);
+    click(By.name("remove"));
+    gotoHome();
+  }
+
+
+
 
   public ContactAddressBookRecordData infoFromEditForm(ContactAddressBookRecordData contact) {
     selectContactById(contact.getId());
