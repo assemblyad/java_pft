@@ -154,25 +154,6 @@ public class ContactAddressBookRecordHelper extends HelperBase{
     return null;
   }
 
-  public GroupData deleteContactFromGroup(ContactAddressBookRecordData contactAddedToGroup, Groups groupsInDB) {
-    for (GroupData groupInDB: groupsInDB){
-      if (contactAddedToGroup.getGroups().contains(groupInDB)) {
-        deleteFromGroup(contactAddedToGroup.getId(), groupInDB.getId());
-        return groupInDB;
-      }
-    }
-    return null;
-  }
-
-  public void deleteFromGroup(int id, int groupID) {
-    gotoHome();
-    click(By.xpath("//select[@name='group']//option[@value='"+groupID+"']"));
-    selectContactById(id);
-    click(By.name("remove"));
-    gotoHome();
-  }
-
-
 
 
   public ContactAddressBookRecordData infoFromEditForm(ContactAddressBookRecordData contact) {
@@ -246,6 +227,17 @@ public class ContactAddressBookRecordHelper extends HelperBase{
     }
     return new ContactAddressBookRecords(contactAddressBookRecord);
   }
+  public void deleteContactFromGroup(ContactAddressBookRecordData contactAddedToGroup, GroupData group) {
+        deleteFromGroup(contactAddedToGroup.getId(), group.getId());
+  }
 
+  public void deleteFromGroup(int id, int groupID) {
+    gotoHome();
+    click(By.xpath("//select[@name='group']//option[@value='"+groupID+"']"));
+    selectContactById(id);
+    click(By.name("remove"));
+    gotoHome();
+    click(By.xpath("//select[@name='group']//option[@value='']"));
+  }
 
 }

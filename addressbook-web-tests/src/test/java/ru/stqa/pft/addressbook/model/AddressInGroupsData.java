@@ -8,6 +8,7 @@ import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
 @XStreamAlias("AddressInGroups")
@@ -31,17 +32,10 @@ public class AddressInGroupsData  {
     return id;
   }
 
-  @ManyToMany(fetch= FetchType.EAGER)
-  @JoinTable(name="group_list",joinColumns = @JoinColumn(name="id")
-          ,inverseJoinColumns =@JoinColumn(name="group_id"))
-  private Set<GroupData> contactGroups = new HashSet<GroupData>();
-
-
-
-
   public int getGroupId() {
     return groupId;
   }
+
 
   @Override
   public String toString() {
@@ -49,5 +43,19 @@ public class AddressInGroupsData  {
             "id=" + id +
             ", groupId=" + groupId +
             '}';
+  }
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) return true;
+    if (o == null || getClass() != o.getClass()) return false;
+    AddressInGroupsData that = (AddressInGroupsData) o;
+    return id == that.id &&
+            groupId == that.groupId;
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(id, groupId);
   }
 }

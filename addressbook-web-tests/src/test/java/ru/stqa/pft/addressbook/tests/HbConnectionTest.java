@@ -35,6 +35,20 @@ public class HbConnectionTest {
     }
   }
 
+
+  @Test(enabled = true)
+  public void testHbConnectionGr(){
+    Session session = sessionFactory.openSession();
+    session.beginTransaction();
+    List<GroupData> result = session.createQuery( "from GroupData where deprecated='0000-00-00 00:00:00'" ).list();
+    session.getTransaction().commit();
+    session.close();
+    for (GroupData group : result ) {
+      System.out.println(group);
+      System.out.println(group.getContacts());
+    }
+  }
+
   @Test(enabled = false)
   public void testHbConnection(){
     Session session = sessionFactory.openSession();
@@ -44,14 +58,16 @@ public class HbConnectionTest {
     session.close();
     for (ContactAddressBookRecordData contact : result ) {
       System.out.println(contact);
+      System.out.println(contact.getId());
       System.out.println(contact.getGroups());
     }
   }
+
   @Test(enabled = true)
   public void testHbConnectionN(){
     Session session = sessionFactory.openSession();
     session.beginTransaction();
-    List<AddressInGroupsData> result = session.createQuery( "from AddressInGroupsData where deprecated='0000-00-00 00:00:00'" ).list();
+    List<AddressInGroupsData> result = session.createQuery( "from AddressInGroupsData" ).list();
     session.getTransaction().commit();
     session.close();
     for (AddressInGroupsData addressInGroup : result ) {
@@ -60,5 +76,4 @@ public class HbConnectionTest {
       System.out.println(addressInGroup.getGroupId());
     }
   }
-
 }
