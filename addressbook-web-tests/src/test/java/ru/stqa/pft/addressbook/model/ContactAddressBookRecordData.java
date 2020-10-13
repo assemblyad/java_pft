@@ -361,7 +361,10 @@ public class ContactAddressBookRecordData {
     this.groups.add(group);
     return this;
   }
-
+  public ContactAddressBookRecordData withDeletedGroup(GroupData group) {
+    this.groups.remove(group);
+    return this;
+  }
 
   public ContactAddressBookRecordData withAddress2(String address2) {
     this.address2 = address2;

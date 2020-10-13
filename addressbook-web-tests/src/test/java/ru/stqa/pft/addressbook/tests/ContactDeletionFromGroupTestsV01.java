@@ -5,13 +5,14 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.*;
 
+import java.security.acl.Group;
 import java.util.List;
 import java.util.stream.Collectors;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
 
-public class ContactDeletionFromGroupTests extends TestBase{
+public class ContactDeletionFromGroupTestsV01 extends TestBase{
 
   @BeforeMethod
   public void ensurePreconditionsGroupsExists() {
@@ -34,33 +35,27 @@ public class ContactDeletionFromGroupTests extends TestBase{
   @Test(enabled = true)
   public void testContactDeletionFromGroup() {
 
-    Groups groupsInDb = app.db().groups();
+    Groups beforeGroupsInDb = app.db().groups();
     List<AddressInGroupsData> before =app.db().addressInGroups();
-
+    ContactAddressBookRecords beforeAllContacts = app.db().contacts();
+    //  List<AddressInGroupsData> before =app.db().addressInGroups();
+    //
     //Connect contact to group if no any contact linked to group
     if (before.size()==0){
-      app.contact().addContactToGroup(app.db().contacts().iterator().next(),groupsInDb);
+      app.contact().addContactToGroup(app.db().contacts().iterator().next(),beforeGroupsInDb);
       before =app.db().addressInGroups();
     }
 
-    // all groups within contacts
-    Groups groupsContact = new Groups(app.db()
-            .groups().stream().filter((g)->g.getContacts().size()>0).collect(Collectors.toSet()));
+    ContactAddressBookRecordData deletedContact =
+            app.contact().deleteContactFrGroup(beforeAllContacts,beforeGroupsInDb);
 
-    GroupData group = groupsContact.iterator().next();
-    ContactAddressBookRecordData  contactCandidateForDeletion =group.getContacts().iterator().next();
-    app.contact().deleteContactFromGroup(contactCandidateForDeletion, group);
 
     List<AddressInGroupsData> after =app.db().addressInGroups();
-    Assert.assertEquals(after.size(),before.size()-1);
+    ContactAddressBookRecords afterAllContacts = app.db().contacts();
+    assertThat(after.size(),equalTo(before.size()-1)); //Лекция 5.8. Хеширование и предварительные проверки
 
-
-/*
-    Assert.assertEquals(after
-            ,before.stream().filter((c)->(c.getId()!=contactCandidateForDeletion.getId()
-                    && c.getGroupId()!=group.getId())).collect(Collectors.toList()));
-
- */
+    assertThat(afterAllContacts.stream().filter((c)->c.getId()==deletedContact.getId()).findFirst().get().getGroups()
+            , equalTo(deletedContact.getGroups()));
 
   }
 }

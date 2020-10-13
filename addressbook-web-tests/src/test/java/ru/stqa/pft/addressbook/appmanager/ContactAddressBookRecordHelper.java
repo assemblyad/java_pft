@@ -9,6 +9,7 @@ import ru.stqa.pft.addressbook.model.ContactAddressBookRecords;
 import ru.stqa.pft.addressbook.model.GroupData;
 import ru.stqa.pft.addressbook.model.Groups;
 
+import java.security.acl.Group;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -153,7 +154,42 @@ public class ContactAddressBookRecordHelper extends HelperBase{
     }
     return null;
   }
+  public ContactAddressBookRecordData addContactToGroup(ContactAddressBookRecords before, Groups groupsInDB) {
+    for (ContactAddressBookRecordData contact: before){
+      for (GroupData group: groupsInDB) {
+        if (!contact.getGroups().contains(group)) {
+          addToGroup(contact.getId(), group.getId());
+          return contact;
+        }
+      }
+    }
+    return null;
+  }
 
+
+  public ContactAddressBookRecordData deleteContactFrGroup(ContactAddressBookRecords contacts, Groups groupsInDB) {
+      for (ContactAddressBookRecordData contact: contacts) {
+        for (GroupData group : groupsInDB) {
+          if (group.getContacts().contains(contact)){
+            deleteFromGroup(contact.getId(), group.getId());
+            return contact;
+          }
+        }
+      }
+    return null;
+  }
+
+  public GroupData deleteContactFromGroup(ContactAddressBookRecords contacts, Groups groupsInDB) {
+    for (ContactAddressBookRecordData contact: contacts) {
+      for (GroupData group : groupsInDB) {
+        if (group.getContacts().contains(contact)){
+          deleteFromGroup(contact.getId(), group.getId());
+          return group;
+        }
+      }
+    }
+    return null;
+  }
 
 
   public ContactAddressBookRecordData infoFromEditForm(ContactAddressBookRecordData contact) {

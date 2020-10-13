@@ -19,12 +19,17 @@ public class AddressInGroupsData  {
 //  @Transient
   private int domain_ID;
   @Id
-  @Column(name = "id")
+  @Column(name = "id",unique=true)
 //  @Type(type = "int")
   private int id;
 
+//  @XStreamOmitField
+//  @ForeignKey(name="group_Id")
+//  @Column(name="group_Id")
+//  @ForeignKey(name="group_Id")
 
-  @Column(name = "group_id")
+
+  @Column(name = "group_id",unique=true)
 //  @Type(type = "int")
   private int groupId;
 
