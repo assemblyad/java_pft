@@ -8,12 +8,13 @@ dependencies {
     testCompile group: 'org.testng', name: 'testng', version: '7.1.0'
     compile 'org.seleniumhq.selenium:selenium-java:3.141.59'
     compile 'org.hamcrest:java-hamcrest:2.0.0.0'
+    compile 'org.apache.httpcomponents:httpclient:4.5.13'
 
 }
 
-task {
+test {
     useTestNG{
-        suites 'src/test/resources/testng.xml'
+        suites 'src/test/resources/testng-mantis.xml'
     }
     if (project.hasProperty('browser')) {
         systemProperty 'browser',"${browser}"
