@@ -37,9 +37,7 @@ public class HttpSession {
     post.setEntity(new UrlEncodedFormEntity(params));
     CloseableHttpResponse response = httpClient.execute(post);
     String body = geTextFrom(response);
-    return body.contains(String.format("<span class=\"italic\">%s</span>"));
-    //<span class="user-info">administrator</span>
-    //Enter password for 'administrator
+    return body.contains(String.format("<span class=\"user-info\">%s</span>",username)); //administrator
   }
 
   private String geTextFrom(CloseableHttpResponse response) throws IOException {
@@ -51,12 +49,11 @@ public class HttpSession {
   }
 
   public boolean isLoggedInAs (String username) throws IOException {
-    HttpGet get = new HttpGet(app.getProperty("web.baseurl")+"/index.php");
+    //HttpGet get = new HttpGet(app.getProperty("web.baseurl")+"/index.php");
+    HttpGet get = new HttpGet(app.getProperty("web.baseUrl")+"/account_page.php");
     CloseableHttpResponse response =httpClient.execute(get);
     String body = geTextFrom(response);
-    return body.contains(String.format("<span class=\"italic\">%s</span>"));
-    //<span class="user-info">administrator</span>
-    //Enter password for 'administrator
+    return body.contains(String.format("<span class=\"user-info\">administrator</span>"));
   }
 
 }
