@@ -51,9 +51,10 @@ public class HttpSession {
   public boolean isLoggedInAs (String username) throws IOException {
     //HttpGet get = new HttpGet(app.getProperty("web.baseurl")+"/index.php");
     HttpGet get = new HttpGet(app.getProperty("web.baseUrl")+"/account_page.php");
+    String [] userNameOriginal = username.split(" ");
     CloseableHttpResponse response =httpClient.execute(get);
     String body = geTextFrom(response);
-    return body.contains(String.format("<span class=\"user-info\">administrator</span>"));
+    return body.contains(String.format("<span class=\"user-info\">"+userNameOriginal[0]+"</span>"));
   }
 
 }
