@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="ru.stqa.pft.mantis.tests.SoapTests" tests="1" skipped="0" failures="0" errors="0" timestamp="2020-10-21T03:08:21" hostname="ADEMIDIONOK-LT" time="23.817">
+  <properties/>
+  <testcase name="executeTest" classname="ru.stqa.pft.mantis.tests.SoapTests" time="23.817"/>
+  <system-out><![CDATA[Test executed and issue # fixed :1
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

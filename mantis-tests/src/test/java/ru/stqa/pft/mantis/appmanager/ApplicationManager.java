@@ -25,6 +25,7 @@ public class ApplicationManager {
   private DbHelper dbhelper;
   private UserHelper userHelper;
   private SessionHelper sessionHelper;
+  private SoapHelper soapHelper;
 
   public ApplicationManager(String browser) {
     this.browser = browser;
@@ -99,6 +100,15 @@ public class ApplicationManager {
     }
     return dbhelper;
   }
+
+  public SoapHelper soap(){
+    if (soapHelper == null){
+      soapHelper = new SoapHelper(this);
+    }
+    return soapHelper;
+  }
+
+
   public WebDriver getDriver() {
     if(wd==null){
       if (browser.equals(BrowserType.FIREFOX)) {

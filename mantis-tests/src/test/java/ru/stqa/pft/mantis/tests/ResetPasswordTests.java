@@ -43,7 +43,6 @@ public class ResetPasswordTests extends TestBase{
     List<MailMessage> mailMessages = app.mail().waitForMail(1,10000);
     String confirmationLink =app.user().findConfirmationLink(mailMessages,userNameCandidateForReset.getEmail());
     app.registration().finish(confirmationLink, "root");
-    //Затем тесты должны проверить, что пользователь может войти в систему с новым паролем.
     HttpSession session = app.newSession();
     assertTrue(session.login(userNameCandidateForReset.getUserName(),"root"));
     assertTrue(session.isLoggedInAs(userNameCandidateForReset.getUserName()));
