@@ -41,7 +41,7 @@ public class RestAssuredHWTests {
   @Test(enabled = true)
   public void testTestExecutionWithNoTResolvedIssue(){
     skipIfNotFixed(345);
-    System.out.println("Test executed and issue # fixed :" + 5);
+    System.out.println("Test executed and issue # fixed :" + 345);
   }
   //
 
