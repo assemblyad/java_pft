@@ -4,10 +4,12 @@ import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
 import com.google.gson.reflect.TypeToken;
+import com.jayway.restassured.RestAssured;
 import jdk.nashorn.internal.parser.JSONParser;
 import org.apache.http.client.fluent.Executor;
 import org.apache.http.client.fluent.Request;
 import org.apache.http.message.BasicNameValuePair;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 import java.io.IOException;
@@ -16,11 +18,14 @@ import java.util.Set;
 
 import static org.testng.Assert.assertEquals;
 
+
 public class RestTests {
+
+
   @Test
   public void testCreateIssue() throws IOException {
     Set<Issue> oldIssues = getIssues();
-    Issue newIssue = new Issue().withSubject("Test issue").withDescription("New test Issue");
+    Issue newIssue = new Issue().withSubject("Test me now issue").withDescription("New test me now Issue");
     int issueId = createIssue(newIssue);
     Set<Issue> newIssues = getIssues();
     oldIssues.add(newIssue.withId(issueId));
@@ -28,8 +33,12 @@ public class RestTests {
   }
 
   private Set<Issue> getIssues() throws IOException {
-    String json = getExecutor().execute(Request.Get("http://demo.bugify.com/api/issues.json"))
+
+    String json = getExecutor().execute(Request.Get("http://demo.bugify.com/api/issues.json?limit=4000"))
             .returnContent().asString();
+
+
+//    String json = RestAssured.get("http://demo.bugify.com/api/issues.json?limit=4000").asString();
     JsonElement parsed = new JsonParser().parse(json);
     JsonElement issues = parsed.getAsJsonObject().get("issues");
     return new Gson().fromJson(issues,new TypeToken<Set<Issue>>() {
@@ -43,11 +52,12 @@ public class RestTests {
   }
 
   private Executor getExecutor() {
-    return Executor.newInstance().auth("6021ccf2ed4db54fb6c937b1fb1ec19e","");
+    return Executor.newInstance().auth("2d81ba95abcbc53e43e945dcb4d48e77","");
     //return Executor.newInstance().auth("288f44776e7bec4bf44fdfeb1e646490","");
   }
 
   private int createIssue(Issue newIssue) throws IOException {
+
     String json = getExecutor().execute(Request.Post("http://demo.bugify.com/api/issues.json")
             .bodyForm(new BasicNameValuePair("subject",newIssue.getSubject())
                     ,new BasicNameValuePair("description",newIssue.getDescription())))

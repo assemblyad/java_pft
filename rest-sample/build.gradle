@@ -7,9 +7,11 @@ repositories {
 dependencies {
 
     testCompile group: 'org.testng', name: 'testng', version: '7.1.0'
+    testCompile group: 'com.jayway.restassured', name: 'rest-assured', version: '2.9.0'
     compile 'com.google.code.gson:gson:2.8.6'
     compile 'org.apache.httpcomponents:httpclient:4.5.13'
     compile 'org.apache.httpcomponents:fluent-hc:4.5.13'
+    //compile 'com.jayway.restassured:rest-assured-parent:2.9.0'
 
 }
 
