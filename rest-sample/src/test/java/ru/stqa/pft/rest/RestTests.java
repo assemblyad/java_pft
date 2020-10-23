@@ -28,7 +28,7 @@ public class RestTests {
     Issue newIssue = new Issue().withSubject("Test me now issue").withDescription("New test me now Issue");
     int issueId = createIssue(newIssue);
     Set<Issue> newIssues = getIssues();
-    oldIssues.add(newIssue.withId(issueId+1));
+    oldIssues.add(newIssue.withId(issueId));
     assertEquals(newIssues, oldIssues);
   }
 
