@@ -78,6 +78,7 @@ public class RestAssuredTests {
     String json = RestAssured.get("http://demo.bugify.com/api/issues/"+issueId+".json").asString();
 
     JsonElement parsed = new JsonParser().parse(json);
+//    JsonObject jsonObject = JsonParser.parseString(myString).getAsJsonObject();
     JsonElement issue = parsed.getAsJsonObject().get("issues");
     JsonArray asJsonArray =issue.getAsJsonArray();
     String state_name = asJsonArray.get(0).getAsJsonObject().get("state_name").getAsString();
