@@ -76,12 +76,16 @@ public class GroupCreationTests extends TestBase {
     Groups after = app.db().groups();
 //    Groups after = app.group().all();
 //    assertThat(after.size(),equalTo(before.size()+1));
+// Allure pass test
+//    assertThat(after, equalTo(
+//            before.withAdded(group.withId(after.stream().mapToInt((g) -> g.getId()).max().getAsInt()))));
+// Allure fail test
     assertThat(after, equalTo(
-            before.withAdded(group.withId(after.stream().mapToInt((g) -> g.getId()).max().getAsInt()))));
+            before));
     verifyGroupListInUI();
   }
 
-  @Test(enabled = false)
+  @Test(enabled = true)
   public void testBadCreation() throws Exception {
     app.goTo().groupPage();
     Groups before = app.db().groups();
@@ -92,6 +96,7 @@ public class GroupCreationTests extends TestBase {
     assertThat(app.db().groups().size(), equalTo(before.size()));
     Groups after = app.db().groups();
 //    Groups after = app.group().all();
+
     assertThat(after, equalTo(
             before));
     verifyGroupListInUI();
